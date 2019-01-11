@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "cookies-js": "^1.2.3",
     "react": "^16.7.0",
     "react-actioncable-provider": "^1.0.3",
     "react-dom": "^16.7.0",

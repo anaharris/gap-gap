@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class SignupForm extends Component {
+class Signup extends Component {
   render() {
     return (
       <div>SignupForm</div>
@@ -8,4 +8,4 @@ class SignupForm extends Component {
   }
 }
 
-export default SignupForm
+export default Signup
