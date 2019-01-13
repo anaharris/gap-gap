@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Search from './Search'
 import { Menu } from 'semantic-ui-react'
+const Cookies = require('cookies-js')
 
 class Navbar extends Component {
 
@@ -13,6 +14,10 @@ class Navbar extends Component {
         <Menu.Item
           name='addBot'
           onClick={this.addBotClick}/>
+        <Menu.Item
+          name='logout'
+          onClick={this.handleLogout}
+        />
       </Menu>
     )
   }
@@ -24,6 +29,12 @@ class Navbar extends Component {
   addBotClick = () => {
     console.log('clicking add bot')
   }
+
+  handleLogout = () => {
+    Cookies.expire('token')
+    this.props.setUser(null)
+  }
+
 
 }
 

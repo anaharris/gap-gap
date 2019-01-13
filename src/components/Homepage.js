@@ -8,7 +8,7 @@ class Homepage extends Component {
   render(){
     return(
       <div>
-        <Navbar />
+        <Navbar setUser={this.props.setUser}/>
         <ConversationsContainer />
         <MessagesContainer />
       </div>

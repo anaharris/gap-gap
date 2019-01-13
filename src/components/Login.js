@@ -26,6 +26,7 @@ class Login extends Component {
   }
 
   handleLoginSubmit = (event) => {
+    console.log('logging in')
     const username = event.target.username.value
     const password = event.target.password.value
     this.userLogin(username, password)

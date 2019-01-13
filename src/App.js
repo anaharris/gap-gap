@@ -46,7 +46,7 @@ class App extends Component {
           <Route exact path="/" render={() => <Redirect to='/login'/>} />
           <Route exact path="/login" render={() => <Login setUser={this.setUser} />} />
           <Route exact path='/signup' component={Signup} />
-          <Route exact path="/home" component={Homepage} />
+          <Route exact path="/home" render={() => <Homepage setUser={this.setUser} />} />
           <Route component={NotFound} />
         </Switch>
       </div>
