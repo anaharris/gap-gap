@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
+import { Segment } from 'semantic-ui-react'
 
 class Conversation extends Component {
   render() {
     return (
-      <div>Conversation</div>
+      <Segment>
+        Conversation
+      </Segment>
     )
   }
 }

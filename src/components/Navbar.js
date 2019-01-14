@@ -7,17 +7,25 @@ class Navbar extends Component {
 
   render() {
     return (
-      <Menu color={'red'}>
+      <Menu color={'green'} inverted>
         <Menu.Item
           name='home'
           onClick={this.homeClick}/>
         <Menu.Item
-          name='addBot'
+          name='add bot'
           onClick={this.addBotClick}/>
         <Menu.Item
-          name='logout'
-          onClick={this.handleLogout}
-        />
+          name='create bot'
+          onClick={this.createBotClick}/>
+        <Menu.Menu position='right'>
+          <Menu.Item>
+            <Search />
+          </ Menu.Item>
+          <Menu.Item
+            name='logout'
+            onClick={this.handleLogout}
+          />
+        </ Menu.Menu>
       </Menu>
     )
   }
@@ -30,11 +38,14 @@ class Navbar extends Component {
     console.log('clicking add bot')
   }
 
+  createBotClick = () => {
+    console.log('clicking create bot')
+  }
+
   handleLogout = () => {
     Cookies.expire('token')
     this.props.setUser(null)
   }
-
 
 }
 

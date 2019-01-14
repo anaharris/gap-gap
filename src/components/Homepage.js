@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 import MessagesContainer from './MessagesContainer'
 import ConversationsContainer from './ConversationsContainer'
 import { Redirect } from 'react-router-dom'
+import { Grid } from 'semantic-ui-react'
 const Cookies = require('cookies-js')
 
 class Homepage extends Component {
   render(){
   return Cookies.get('token') ? (
-      <div>
-        <ConversationsContainer />
-        <MessagesContainer />
-      </div>
+      <Grid columns={2} padded >
+        <Grid.Row>
+          <ConversationsContainer />
+          <MessagesContainer />
+        </ Grid.Row>
+      </Grid>
     ) : <Redirect to='/login' />
   }
 }

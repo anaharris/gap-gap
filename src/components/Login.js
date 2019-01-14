@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect, Link } from 'react-router-dom'
-import { Grid, Header, Form, Image, Button, Segment, Message } from 'semantic-ui-react'
+import { Grid, Form, Button, Segment, Message } from 'semantic-ui-react'
 const Cookies = require('cookies-js')
 
 class Login extends Component {
@@ -26,10 +26,10 @@ class Login extends Component {
   }
 
   handleLoginSubmit = (event) => {
-    console.log('logging in')
     const username = event.target.username.value
     const password = event.target.password.value
     this.userLogin(username, password)
+
   }
 
   render() {
@@ -37,25 +37,25 @@ class Login extends Component {
       <div className='padded-top-large'>
         <Grid textAlign='center' verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
-          <Form size='large' onSubmit={this.handleLoginSubmit}>
-            <Segment stacked>
-              <Form.Input name='username' fluid icon='user' iconPosition='left' placeholder='Username' />
-              <Form.Input
-               name='password'
-               fluid
-               icon='lock'
-               iconPosition='left'
-               placeholder='Password'
-               type='password'
-               />
-              <Button color='blue' fluid size='large' type='submit'>
-                Login
-              </Button>
-            </Segment>
-          </Form>
-          <Message>
-              New to us? <Link to='/signup'>Sign up</Link>
-          </Message>
+            <Form size='large' onSubmit={this.handleLoginSubmit}>
+              <Segment stacked>
+                <Form.Input name='username' fluid icon='user' iconPosition='left' placeholder='Username' />
+                <Form.Input
+                 name='password'
+                 fluid
+                 icon='lock'
+                 iconPosition='left'
+                 placeholder='Password'
+                 type='password'
+                 />
+                <Button color='green' fluid size='large' type='submit'>
+                  Login
+                </Button>
+              </Segment>
+            </Form>
+            <Message>
+                New to us? <Link to='/signup'>Sign up</Link>
+            </Message>
           </ Grid.Column>
         </Grid>
       </div>

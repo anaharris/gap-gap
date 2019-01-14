@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
+import { Input } from 'semantic-ui-react'
 
 class Search extends Component {
   render() {
     return (
-      <div>Search
-      </div>
+      <Input icon='search' transparent placeholder='search' />
     )
   }
 }

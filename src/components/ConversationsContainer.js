@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import Conversation from './Conversation'
+import { Segment, Grid } from 'semantic-ui-react'
 
 class ConversationContainer extends Component {
   render() {
     return (
-      <div>ConversationContainer
-      <Conversation />
-      </div>
+      <Grid.Column width={4}>
+        <Conversation />
+        <Conversation />
+      </Grid.Column>
     )
   }
 }
