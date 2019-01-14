@@ -34,7 +34,7 @@ class Login extends Component {
 
   render() {
     return Cookies.get('token') ? <Redirect to='/home' /> : (
-      <div>
+      <div className='padded-top-large'>
         <Grid textAlign='center' verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
           <Form size='large' onSubmit={this.handleLoginSubmit}>
