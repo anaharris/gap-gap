@@ -60,13 +60,8 @@ class App extends Component {
     const url = 'ws://localhost:5000/cable'
     let App = {}
     App.cable = ActionCable.createConsumer(`${url}?token=${token}`)
-    // have a list of all the conversations that the user has
-    // map/forEach over conversations and subscribe to each one
-    // const conversations = [{id: 1, name: 'Good Dog of the Day'}]
-    // const subscriptions = conversations.map(c => {
-    //   return App.cable.subscriptions.create({channel: 'MessagesChannel', convo: c.id})
-    // })
-    const messagesSubscription = App.cable.subscriptions.create({channel: 'MessagesChannel', convo: 1}, {
+
+    const messagesSubscription = App.cable.subscriptions.create({channel: 'MessagesChannel', conversation_id: 1}, {
       connected: () => {
         console.log('connected to messages stream')
       },
@@ -74,7 +69,12 @@ class App extends Component {
         console.log('disconnected from messages stream')
       },
       received: (data) => {
-        console.log(data)
+        this.setState({
+          selectedChat: {
+            messages:
+              [...this.state.selectedChat.messages, data]
+            }
+        })
       }
     })
     App.conversations = [messagesSubscription]
@@ -89,6 +89,12 @@ class App extends Component {
           selectedChat: data
         })
       })
+  }
+
+  chatInput = (e) => {
+    if (e.keyCode === 13) {
+      window.App.conversations[0].send({content: e.target.value, conversation_id: this.state.selectedChat.id})
+    }
   }
 
 
@@ -108,8 +114,10 @@ class App extends Component {
           <Route exact path="/home" render={() => <Homepage
               conversations={this.state.conversations}
               onChatClick={this.onChatClick}
-              selectedChat={this.state.selectedChat}/>}
-            />
+              selectedChat={this.state.selectedChat}
+              chatInput={this.chatInput}
+            />}
+          />
           <Route component={NotFound} />
         </Switch>
         </ Fragment>

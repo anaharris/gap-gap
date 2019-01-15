@@ -15,7 +15,10 @@ class Homepage extends Component {
             conversations={this.props.conversations}
             onChatClick={this.props.onChatClick}
           />
-          <MessagesContainer selectedChat={this.props.selectedChat} />
+          <MessagesContainer
+            selectedChat={this.props.selectedChat}
+            chatInput={this.props.chatInput}
+          />
         </ Grid.Row>
       </Grid>
     ) : <Redirect to='/login' />
