@@ -26,10 +26,12 @@ class App extends Component {
   }
 
   setUser = (user) => {
-    this.setState({ userData: user })
     if (user == null) {
-      this.setState({ conversations: [], selectedChat: null })
+      this.setState({ userData: null, conversations: [], selectedChat: null })
+    } else {
+      this.setState({ userData: user, conversations: user.conversations})
     }
+
   }
 
   userFetch = () => {
@@ -99,7 +101,6 @@ class App extends Component {
 
   render() {
     const {userData} = this.state
-    console.log('render', this.state)
     return (
       <Fragment>
       {userData ? (
