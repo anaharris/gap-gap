@@ -2,12 +2,6 @@ import React, { Component } from 'react'
 import { Form, TextArea } from 'semantic-ui-react'
 
 class Input extends Component {
-  constructor() {
-    super()
-    this.state = {
-      textValue: ''
-    }
-  }
 
   render() {
     return (

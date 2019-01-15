@@ -27,11 +27,11 @@ class App extends Component {
 
   setUser = (user) => {
     if (user == null) {
-      this.setState({ userData: null, conversations: [], selectedChat: null })
+      this.setState({ userData: user, conversations: [], selectedChat: null })
     } else {
       this.setState({ userData: user, conversations: user.conversations})
     }
-
+    console.log('state', this.state, 'user', user)
   }
 
   userFetch = () => {
@@ -55,6 +55,7 @@ class App extends Component {
           conversations: data.user.conversations
         })
       })
+      console.log('inside fetch', this.state)
   }
 
   createSocket = () => {
@@ -73,7 +74,6 @@ class App extends Component {
       received: (data) => {
         let newMessages = this.state.selectedChat.messages.slice()
         newMessages.push(data)
-        console.log(this.state.selectedChat, newMessages)
         this.setState({
           selectedChat: { ...this.state.selectedChat, messages: newMessages }
         })

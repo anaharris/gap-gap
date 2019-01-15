@@ -29,7 +29,6 @@ class Login extends Component {
     const username = event.target.username.value
     const password = event.target.password.value
     this.userLogin(username, password)
-
   }
 
   render() {
