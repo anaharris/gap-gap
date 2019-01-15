@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 
 class Message extends Component {
+
   render() {
     return (
-      <p>{this.props.message.user_id}: {this.props.message.content} </p>
+      <p><span className='conv-name'>{this.props.message.user_name}:</span> {this.props.message.content} </p>
     )
   }
 }

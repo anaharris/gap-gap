@@ -69,11 +69,10 @@ class App extends Component {
         console.log('disconnected from messages stream')
       },
       received: (data) => {
+        let newMessages = this.state.selectedChat.messages.slice()
+        newMessages.push(data)
         this.setState({
-          selectedChat: {
-            messages:
-              [...this.state.selectedChat.messages, data]
-            }
+          selectedChat: { messages: newMessages }
         })
       }
     })

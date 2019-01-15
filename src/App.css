@@ -2,6 +2,10 @@
   padding-top: 10%;
 }
 
+.conv-name {
+  font-weight: 600;
+}
+
 /* .App {
   text-align: center;
 }
