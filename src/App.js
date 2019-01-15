@@ -99,6 +99,7 @@ class App extends Component {
 
   render() {
     const {userData} = this.state
+    console.log('render', this.state)
     return (
       <Fragment>
       {userData ? (
@@ -119,7 +120,7 @@ class App extends Component {
           />
           <Route component={NotFound} />
         </Switch>
-        </ Fragment>
+      </ Fragment>
     );
   }
 }
