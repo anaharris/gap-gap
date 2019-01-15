@@ -11,7 +11,7 @@ class MessagesContainer extends Component {
         {this.props.selectedChat ?
           this.props.selectedChat.messages.map(m => (
               <Message key={m.id} message={m}/>
-            )) : null}
+            )) : <p>Select a conversation</p>}
         </ Segment>
         {this.props.selectedChat ? (
           <Segment>
