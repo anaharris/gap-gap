@@ -9,7 +9,7 @@ class Navbar extends Component {
     return (
       <Menu color={'green'} inverted>
         <Menu.Item
-          name='home'
+          name='new conversation'
           onClick={this.homeClick}/>
         <Menu.Item
           name='add bot'
@@ -31,7 +31,7 @@ class Navbar extends Component {
   }
 
   homeClick = () => {
-    console.log('clicking home')
+    console.log('clicking new conversation')
   }
 
   addBotClick = () => {

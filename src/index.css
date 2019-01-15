@@ -16,3 +16,7 @@ code {
 .conv-name {
   font-weight: 600;
 }
+
+.padded-top-large {
+  padding-top: 10%;
+}

@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react'
-import {Route, Switch, Redirect, withRouter} from 'react-router-dom'
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
+import { Sticky } from 'semantic-ui-react'
 import Login from './components/Login'
 import Signup from './components/Signup'
 import Homepage from './components/Homepage'
 import NotFound from './components/NotFound'
 import Navbar from './components/Navbar'
-import {Sticky} from 'semantic-ui-react'
 import ActionCable from 'actioncable'
 const Cookies = require('cookies-js')
 
@@ -73,8 +73,9 @@ class App extends Component {
       received: (data) => {
         let newMessages = this.state.selectedChat.messages.slice()
         newMessages.push(data)
+        console.log(this.state.selectedChat, newMessages)
         this.setState({
-          selectedChat: { messages: newMessages }
+          selectedChat: { ...this.state.selectedChat, messages: newMessages }
         })
       }
     })
@@ -92,8 +93,8 @@ class App extends Component {
       })
   }
 
-  chatInput = (e) => {
-    if (e.keyCode === 13) {
+  chatInput = (e, data) => {
+    if (e.key === 'Enter') {
       window.App.conversations[0].send({content: e.target.value, conversation_id: this.state.selectedChat.id})
     }
   }
