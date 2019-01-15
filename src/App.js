@@ -74,7 +74,7 @@ class App extends Component {
         let newMessages = this.state.selectedChat.messages.slice()
         newMessages.push(data)
         this.setState({
-          selectedChat: { messages: newMessages }
+          selectedChat: { ...this.state.selectedChat, messages: newMessages }
         })
       }
     })
