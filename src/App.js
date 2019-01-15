@@ -93,7 +93,7 @@ class App extends Component {
       })
   }
 
-  chatInput = (e, data) => {
+  chatInput = (e) => {
     if (e.key === 'Enter') {
       window.App.conversations[0].send({content: e.target.value, conversation_id: this.state.selectedChat.id})
     }
