@@ -7,8 +7,11 @@ class MessagesContainer extends Component {
     return (
       <Grid.Column width={12}>
         <Segment>
-          <Message />
-          <Message />
+        {this.props.selectedChat ?
+          this.props.selectedChat.messages.map(m => (
+            <Message key={m.id} message={m}/>)
+          ) : (<p>Select a conversation</p>)
+        }
         </ Segment>
       </Grid.Column>
     )

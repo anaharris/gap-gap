@@ -15,7 +15,8 @@ class App extends Component {
     super()
     this.state = {
       userData: null,
-      conversations: []
+      conversations: [],
+      selectedChat: null
     }
   }
 
@@ -26,6 +27,9 @@ class App extends Component {
 
   setUser = (user) => {
     this.setState({ userData: user })
+    if (user == null) {
+      this.setState({ conversations: [], selectedChat: null })
+    }
   }
 
   userFetch = () => {
@@ -77,9 +81,18 @@ class App extends Component {
     window.App = App
   }
 
+  onChatClick = (conversation) => {
+    fetch(`http://localhost:5000/conversations/${conversation.id}`)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          selectedChat: data
+        })
+      })
+  }
+
 
   render() {
-    console.log('rendering', this.state)
     const {userData} = this.state
     return (
       <Fragment>
@@ -92,7 +105,11 @@ class App extends Component {
           <Route exact path="/" render={() => <Redirect to='/login'/>} />
           <Route exact path="/login" render={() => <Login setUser={this.setUser} />} />
           <Route exact path='/signup' component={Signup} />
-          <Route exact path="/home" render={() => <Homepage conversations={this.state.conversations}/>} />
+          <Route exact path="/home" render={() => <Homepage
+              conversations={this.state.conversations}
+              onChatClick={this.onChatClick}
+              selectedChat={this.state.selectedChat}/>}
+            />
           <Route component={NotFound} />
         </Switch>
         </ Fragment>

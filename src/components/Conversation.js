@@ -4,8 +4,8 @@ import { Segment } from 'semantic-ui-react'
 class Conversation extends Component {
   render() {
     return (
-      <Segment>
-        {this.props.conversation.topic}
+      <Segment onClick={() => this.props.onChatClick(this.props.conversation)}>
+          {this.props.conversation.topic}
       </Segment>
     )
   }
