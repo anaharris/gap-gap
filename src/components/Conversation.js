@@ -5,7 +5,7 @@ class Conversation extends Component {
   render() {
     return (
       <Segment>
-        Conversation
+        {this.props.conversation.topic}
       </Segment>
     )
   }

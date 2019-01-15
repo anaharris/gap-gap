@@ -10,7 +10,7 @@ class Homepage extends Component {
   return Cookies.get('token') ? (
       <Grid columns={2} padded >
         <Grid.Row>
-          <ConversationsContainer />
+          <ConversationsContainer conversations={this.props.conversations}/>
           <MessagesContainer />
         </ Grid.Row>
       </Grid>
