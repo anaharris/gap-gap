@@ -1,44 +1,42 @@
 import { combineReducers } from 'redux'
 
-const messageReducer = (oldState = '', action) => {
+const messageReducer = (state = '', action) => {
   switch (action.type) {
     case 'SEND_MESSAGE':
       return action.messageInput
     default:
-      return oldState
+      return state
   }
 }
 
-const userReducer = (oldState = null, action) => {
+const userReducer = (state = null, action) => {
   switch (action.type) {
     case 'FETCHED_USER':
       return action.userData
     default:
-      return oldState
+      return state
   }
 }
 
-const selectedConversationReducer = (oldState = null, action) => {
+const selectedConversationReducer = (state = null, action) => {
   switch (action.type) {
     case 'FETCHED_CONVERSATION':
       return action.selectedConversation
     default:
-      return oldState
+      return state
   }
 }
 
-const receiveMessageReducer = (oldState = null, action) => {
+const receiveMessageReducer = (state = null, action) => {
   switch (action.type) {
     case 'RECEIVE_MESSAGE':
-      let newMessages = this.state.selectedChat.messages.slice()
-      newMessages.push(data)
-      this.setState({
-      selectedChat: { ...this.state.selectedChat, messages: newMessages }
-    })
-      return
-      break;
+      let newMessages = state.selectedConversation.messages.slice()
+      newMessages.push(action.message)
+      return {
+        selectedConversation: { ...state.selectedConversation, messages: newMessages }
+      }
     default:
-
+      return state
   }
 }
 

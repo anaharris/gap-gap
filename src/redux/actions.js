@@ -1,7 +1,12 @@
+import ActionCable from 'actioncable'
 const Cookies = require('cookies-js')
 
+
+// on Login
+const fetchedUser = (userData) => ({type: 'FETCHED_USER', userData})
+
 const fetchingUser = () => {
-  return () => {
+  return (dispatch) => {
     const token = Cookies.get('token')
     const url = 'http://localhost:5000/profile'
     fetch(url, {
@@ -12,14 +17,17 @@ const fetchingUser = () => {
       }
     })
       .then(res => res.json())
-      .then(data => dispatch(fetchedUser(userData)))
+      .then(userData => {
+        dispatch(fetchedUser(userData))
+      })
   }
 }
 
-const fetchedUser = (userData) => {type: 'FETCHED_USER', userData}
+// on componentDidMount
+const receiveMessage = (message) => ({type: 'RECEIVE_MESSAGE', message})
 
 const createSocket = () => {
-  return () => {
+  return (dispatch) => {
     const token = Cookies.get('token')
     const url = 'ws://localhost:5000/cable'
     let App = {}
@@ -32,27 +40,32 @@ const createSocket = () => {
       disconnected: () => {
         console.log('disconnected from messages stream')
       },
-      received: (data) => dispatch(receiveMessage(data)))
+      received: (data) => {
+        dispatch(receiveMessage(data))
+      }
+    })
 
       App.conversations = [messagesSubscription]
       window.App = App
   }
 }
 
-const receiveMessage = (message) => ({type: 'RECEIVE_MESSAGE', message})
+// onClick on a particular conversation
+const fetchedConversation = (selectedConversation) => ({type: 'FETCHED_CONVERSATION', selectedConversation})
 
 const fetchingConversation = (conversation) => {
-  return () => {
+  return (dispatch) => {
     fetch(`http://localhost:5000/conversations/${conversation.id}`)
       .then(res => res.json())
-      .then(data => dispatch(fetchedConversation(data)))
+      .then(data => {
+        dispatch(fetchedConversation(data))
+      })
   }
 }
 
-const fetchedConversation = (selectedConversation) => ({type: 'FETCHED_CONVERSATION', selectedConversation})
-
+// onKeyDown for Conversation Input
 const sendMessage = (message) => ({type: 'SEND_MESSAGE', messageInput: message})
 
 
 
-export {fetchingUser, fetchingConversations, sendMessage, receiveMessage}
+export {fetchingUser, fetchingConversation, sendMessage, receiveMessage}
