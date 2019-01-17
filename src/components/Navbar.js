@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import Search from './Search'
 import { Menu } from 'semantic-ui-react'
-const Cookies = require('cookies-js')
+import { logout } from '../redux/actions.js'
+import { connect } from 'react-redux'
 
 class Navbar extends Component {
 
@@ -23,7 +24,7 @@ class Navbar extends Component {
           </ Menu.Item>
           <Menu.Item
             name='logout'
-            onClick={this.handleLogout}
+            onClick={this.props.onClick}
           />
         </ Menu.Menu>
       </Menu>
@@ -42,11 +43,12 @@ class Navbar extends Component {
     console.log('clicking create bot')
   }
 
-  handleLogout = () => {
-    Cookies.expire('token')
-    this.props.setUser(null)
-  }
-
 }
 
-export default Navbar
+const mapDispatchToProps = dispatch => {
+  return {
+    onClick: () => {dispatch(logout())}
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Navbar)

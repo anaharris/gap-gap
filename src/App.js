@@ -1,14 +1,14 @@
 import React, { Component, Fragment } from 'react'
 import {Route, Switch, Redirect, withRouter} from 'react-router-dom'
+import ActionCable from 'actioncable'
 import Login from './components/Login'
 import Signup from './components/Signup'
 import Homepage from './components/Homepage'
 import NotFound from './components/NotFound'
 import Navbar from './components/Navbar'
 import {Sticky} from 'semantic-ui-react'
-import ActionCable from 'actioncable'
 import { connect } from 'react-redux'
-import { fetchingUser } from './redux/actions.js'
+// import { } from './redux/actions.js'
 const Cookies = require('cookies-js')
 
 
@@ -103,7 +103,7 @@ class App extends Component {
 
 
   render() {
-    const {userData} = this.state
+    const userData = this.props.currentUser
     return (
       <Fragment>
       {userData ? (
@@ -137,5 +137,11 @@ class App extends Component {
 //   }
 // }
 
-// export default withRouter(connect(null, mapDispatchToProps)(App));
-export default withRouter(App)
+const mapStateToProps = state => {
+  return {
+    currentUser: state.userData
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(App));
+// export default withRouter(App)

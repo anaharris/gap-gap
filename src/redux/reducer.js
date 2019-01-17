@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux'
+const Cookies = require('cookies-js')
+
 
 const messageReducer = (state = '', action) => {
   switch (action.type) {
@@ -11,8 +13,12 @@ const messageReducer = (state = '', action) => {
 
 const userReducer = (state = null, action) => {
   switch (action.type) {
-    case 'FETCHED_USER':
+    case 'LOGGED_IN':
       return action.userData
+    case 'LOGGED_OUT':
+      console.log('logging out')
+      Cookies.expire('token')
+      return null
     default:
       return state
   }
@@ -44,7 +50,7 @@ const rootReducer = combineReducers({
   messageInput: messageReducer,
   userData: userReducer,
   selectedConversation: selectedConversationReducer,
-  receiveMessage: receiveMessageReducer
+  receiveMessage: receiveMessageReducer,
 })
 
 export default rootReducer

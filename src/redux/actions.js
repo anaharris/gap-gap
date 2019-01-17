@@ -1,27 +1,35 @@
 import ActionCable from 'actioncable'
 const Cookies = require('cookies-js')
 
+// login
 
-// on Login
-const fetchedUser = (userData) => ({type: 'FETCHED_USER', userData})
+const loggedIn = (userData) => ({type: 'LOGGED_IN', userData})
 
-const fetchingUser = () => {
+const loggingIn = (username, password) => {
   return (dispatch) => {
-    const token = Cookies.get('token')
-    const url = 'http://localhost:5000/profile'
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        "Content-Type":"application/json",
-        "Authorization":`Bearer ${token}`
+    const url = 'http://localhost:5000/login'
+  let data = { user: {username: username, password: password} }
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  }).then(res => res.json())
+    .then(data => {
+      if (data.error) {
+        alert(data.message)
+      } else {
+        Cookies.set('token', data.jwt)
+        dispatch(loggedIn(data.user))
       }
     })
-      .then(res => res.json())
-      .then(userData => {
-        dispatch(fetchedUser(userData))
-      })
   }
 }
+
+// logout
+const logout = () => ({type: 'LOGGED_OUT'})
+
 
 // on componentDidMount
 const receiveMessage = (message) => ({type: 'RECEIVE_MESSAGE', message})
@@ -66,6 +74,12 @@ const fetchingConversation = (conversation) => {
 // onKeyDown for Conversation Input
 const sendMessage = (message) => ({type: 'SEND_MESSAGE', messageInput: message})
 
+// const sendingMessage = (e) => {
+//   return (dispatch) => {
+//
+//   }
+// }
 
 
-export {fetchingUser, fetchingConversation, sendMessage, receiveMessage}
+
+export { sendMessage, fetchedConversation, receiveMessage, loggingIn, logout }

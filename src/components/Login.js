@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Redirect, Link } from 'react-router-dom'
 import { Grid, Form, Button, Segment, Message } from 'semantic-ui-react'
+import { loggingIn } from '../redux/actions.js'
+import { connect } from 'react-redux'
 const Cookies = require('cookies-js')
 
 class Login extends Component {
@@ -22,6 +24,7 @@ class Login extends Component {
         } else {
           Cookies.set('token', data.jwt)
           this.props.setUser(data.user)
+          console.log(data.user)
         }
       })
   }
@@ -34,11 +37,13 @@ class Login extends Component {
   }
 
   render() {
-    return Cookies.get('token') ? <Redirect to='/home' /> : (
+    return Cookies.get('token') ? <Redirect to='/conversations' /> : (
       <div className='padded-top-large'>
         <Grid textAlign='center' verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Form size='large' onSubmit={this.handleLoginSubmit}>
+            <Form size='large' onSubmit={(e) => {
+                    this.props.onSubmit(e.target.username.value, e.target.password.value)
+              }}>
               <Segment stacked>
                 <Form.Input name='username' fluid icon='user' iconPosition='left' placeholder='Username' />
                 <Form.Input
@@ -67,9 +72,9 @@ class Login extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // onSubmit : function object
+    onSubmit: (username, password) => {dispatch(loggingIn(username, password))}
   }
 }
 
 
-export default Login
+export default connect(null, mapDispatchToProps)(Login)
