@@ -5,6 +5,7 @@ const Cookies = require('cookies-js')
 
 class Login extends Component {
 
+
   userLogin = (username, password) => {
     const url = 'http://localhost:5000/login'
     let data = { user: {username: username, password: password} }
@@ -62,6 +63,12 @@ class Login extends Component {
     )
   }
 
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    // onSubmit : function object
+  }
 }
 
 

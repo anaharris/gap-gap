@@ -7,6 +7,8 @@ import NotFound from './components/NotFound'
 import Navbar from './components/Navbar'
 import {Sticky} from 'semantic-ui-react'
 import ActionCable from 'actioncable'
+import { connect } from 'react-redux'
+import { fetchingUser } from './redux/actions.js'
 const Cookies = require('cookies-js')
 
 
@@ -82,6 +84,7 @@ class App extends Component {
     window.App = App
   }
 
+// action fetchingConversation
   onChatClick = (conversation) => {
     fetch(`http://localhost:5000/conversations/${conversation.id}`)
       .then(res => res.json())
@@ -112,7 +115,7 @@ class App extends Component {
           <Route exact path="/" render={() => <Redirect to='/login'/>} />
           <Route exact path="/login" render={() => <Login setUser={this.setUser} />} />
           <Route exact path='/signup' component={Signup} />
-          <Route exact path="/home" render={() => <Homepage
+          <Route exact path="/conversations" render={() => <Homepage
               conversations={this.state.conversations}
               onChatClick={this.onChatClick}
               selectedChat={this.state.selectedChat}
@@ -126,4 +129,13 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     fetchingUser: () => {dispatch(fetchingUser)},
+//     fetchingConversation: (conversation) => {dispatch(fetchingConversation(conversation))},
+//
+//   }
+// }
+
+// export default withRouter(connect(null, mapDispatchToProps)(App));
+export default withRouter(App)

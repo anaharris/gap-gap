@@ -8,8 +8,11 @@ class ConversationContainer extends Component {
       <Grid.Column width={4}>
       {this.props.conversations ?
         this.props.conversations.map(c => (
-            <Conversation key={c.id} conversation={c} onChatClick={this.props.onChatClick}/>)
-          ) : null
+            <Conversation
+              key={c.id}
+              conversation={c}
+              onConversationClick={this.props.onConversationClick}
+            />)) : null
         }
       </Grid.Column>
     )
