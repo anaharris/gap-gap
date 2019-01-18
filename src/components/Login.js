@@ -6,6 +6,7 @@ import { loggingIn } from '../redux/actions.js'
 const Cookies = require('cookies-js')
 
 class Login extends Component {
+
   render() {
     console.log('token', Cookies.get('token'))
     return (
@@ -13,11 +14,14 @@ class Login extends Component {
       <div className='padded-top-large'>
         <Grid textAlign='center' verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Form size='large' onSubmit={(e) => {
-                    this.props.onSubmit(e.target.username.value, e.target.password.value)
-              }}>
+            <Form size='large'
+              onSubmit={(e) => {this.props.onSubmit(e.target.username.value, e.target.password.value)}}>
               <Segment stacked>
-                <Form.Input name='username' fluid icon='user' iconPosition='left' placeholder='Username' />
+                <Form.Input
+                  name='username'
+                  fluid icon='user'
+                  iconPosition='left'
+                  placeholder='Username' />
                 <Form.Input
                  name='password'
                  fluid

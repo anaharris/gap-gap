@@ -5,7 +5,9 @@ import { connect } from 'react-redux'
 import { fetchingConversation } from '../redux/actions.js'
 
 class ConversationContainer extends Component {
+
   render() {
+    console.log(this.props.conversations)
     return (
       <Grid.Column width={4}>
       {this.props.conversations ?
@@ -13,7 +15,7 @@ class ConversationContainer extends Component {
             <Conversation
               key={c.id}
               conversation={c}
-              onConversationClick={this.props.onConversationClick}
+              onClick={() => this.props.onClick(c.id)}
             />)) : null
         }
       </Grid.Column>
@@ -23,13 +25,13 @@ class ConversationContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    conversations: state.userData.conversations
+    conversations: state.userData.user.conversations
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onConversationClick: () => {dispatch(fetchingConversation())}
+    onClick: (id) => {dispatch(fetchingConversation(id))}
   }
 }
 

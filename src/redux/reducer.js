@@ -15,7 +15,6 @@ const userReducer = (state = null, action) => {
   switch (action.type) {
     case 'LOGGED_IN':
       return action.userData
-      console.log('user reducer', action.userData)
 
       case 'LOGGED_OUT':
         Cookies.expire('token')

@@ -16,11 +16,12 @@ class App extends Component {
   componentDidMount() {
     if (Cookies.get('token')) {
       this.props.checkingUser()
+      console.log('componentDidMount in App')
     }
   }
 
   render() {
-    console.log('currentUser', this.props.currentUser)
+    console.log('currentUser in App', this.props.currentUser)
     return (
       <Fragment>
       {this.props.currentUser ? (
@@ -45,6 +46,7 @@ const mapStateToProps = state => {
     currentUser: state.userData
   }
 }
+
 const mapDispatchToProps = dispatch => {
   return {
     createSocket: () => {dispatch(createSocket())},

@@ -48,7 +48,7 @@ const checkingForUser = (token) => {
       .then(res => res.json())
       .then(userData => {
         dispatch(checkedUser(userData))
-        console.log('checkingUser', userData)
+        console.log('checkingUser Action', userData)
       })
   }
 }
@@ -84,9 +84,9 @@ const createSocket = () => {
 // onClick on a particular conversation
 const fetchedConversation = (selectedConversation) => ({type: 'FETCHED_CONVERSATION', selectedConversation})
 
-const fetchingConversation = (conversation) => {
+const fetchingConversation = (id) => {
   return (dispatch) => {
-    fetch(`http://localhost:5000/conversations/${conversation.id}`)
+    fetch(`http://localhost:5000/conversations/${id}`)
       .then(res => res.json())
       .then(data => {
         dispatch(fetchedConversation(data))

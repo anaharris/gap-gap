@@ -45,10 +45,5 @@ class Navbar extends Component {
 
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     onClick: () => {dispatch(logout())}
-//   }
-// }
 
 export default connect(null, {logout})(Navbar)

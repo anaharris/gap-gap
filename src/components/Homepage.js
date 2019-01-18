@@ -5,22 +5,17 @@ import { Redirect } from 'react-router-dom'
 import { Grid } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 
-const Cookies = require('cookies-js')
+
 class Homepage extends Component {
 
   render(){
+    console.log(this.props.currentUser)
   return (
-    this.props.conversations ? (
+    this.props.currentUser ? (
       <Grid columns={2} padded >
         <Grid.Row>
-          <ConversationsContainer
-            conversations={this.props.conversations}
-            onChatClick={this.props.onChatClick}
-          />
-          <MessagesContainer
-            selectedChat={this.props.selectedChat}
-            chatInput={this.props.chatInput}
-          />
+          <ConversationsContainer />
+          <MessagesContainer />
         </ Grid.Row>
       </Grid>
       ) : <Redirect to='/login' />
@@ -30,8 +25,9 @@ class Homepage extends Component {
 
 const mapStateToProps = state => {
   return {
-    conversations: state.userData
+    currentUser: state.userData
   }
 }
+
 
 export default connect(mapStateToProps)(Homepage)
