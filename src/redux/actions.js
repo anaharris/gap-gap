@@ -88,6 +88,7 @@ const fetchingConversation = (id) => {
       .then(res => res.json())
       .then(data => {
         dispatch(fetchedConversation(data))
+        console.log('fetchedConversation', data)
       })
   }
 }
