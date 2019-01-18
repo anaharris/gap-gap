@@ -21,7 +21,6 @@ const loggingIn = (username, password) => {
       } else {
         Cookies.set('token', data.jwt)
         dispatch(loggedIn(data.user))
-        console.log('loggingIn', data)
       }
     })
   }
@@ -46,9 +45,8 @@ const checkingForUser = (token) => {
       }
     })
       .then(res => res.json())
-      .then(userData => {
-        dispatch(checkedUser(userData))
-        console.log('checkingUser Action', userData)
+      .then(data => {
+        dispatch(checkedUser(data.user))
       })
   }
 }

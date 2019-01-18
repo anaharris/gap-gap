@@ -9,7 +9,6 @@ import {connect} from 'react-redux'
 class Homepage extends Component {
 
   render(){
-    console.log(this.props.currentUser)
   return (
     this.props.currentUser ? (
       <Grid columns={2} padded >

@@ -16,12 +16,10 @@ class App extends Component {
   componentDidMount() {
     if (Cookies.get('token')) {
       this.props.checkingUser()
-      console.log('componentDidMount in App')
     }
   }
 
   render() {
-    console.log('currentUser in App', this.props.currentUser)
     return (
       <Fragment>
       {this.props.currentUser ? (

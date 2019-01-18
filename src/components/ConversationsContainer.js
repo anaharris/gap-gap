@@ -2,12 +2,10 @@ import React, { Component } from 'react'
 import Conversation from './Conversation'
 import { Grid } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { fetchingConversation } from '../redux/actions.js'
 
 class ConversationContainer extends Component {
 
   render() {
-    console.log(this.props.conversations)
     return (
       <Grid.Column width={4}>
       {this.props.conversations ?
@@ -15,7 +13,6 @@ class ConversationContainer extends Component {
             <Conversation
               key={c.id}
               conversation={c}
-              onClick={() => this.props.onClick(c.id)}
             />)) : null
         }
       </Grid.Column>
@@ -25,14 +22,8 @@ class ConversationContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    conversations: state.userData.user.conversations
+    conversations: state.userData.conversations
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onClick: (id) => {dispatch(fetchingConversation(id))}
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ConversationContainer)
+export default connect(mapStateToProps)(ConversationContainer)

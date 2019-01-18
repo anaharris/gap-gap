@@ -8,7 +8,6 @@ const Cookies = require('cookies-js')
 class Login extends Component {
 
   render() {
-    console.log('token', Cookies.get('token'))
     return (
       Cookies.get('token') && this.props.currentUser ? <Redirect to='/conversations' /> :
       <div className='padded-top-large'>
