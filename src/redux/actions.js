@@ -2,6 +2,8 @@ import ActionCable from 'actioncable'
 const Cookies = require('cookies-js')
 
 // login
+const loggedIn = (userData) => ({type: 'LOGGED_IN', userData})
+
 const loggingIn = (username, password) => {
   return (dispatch) => {
     const url = 'http://localhost:5000/login'
@@ -18,7 +20,8 @@ const loggingIn = (username, password) => {
         alert(data.message)
       } else {
         Cookies.set('token', data.jwt)
-        dispatch(fetchingUser(data.jwt))
+        dispatch(loggedIn(data.user))
+        console.log('loggingIn', data)
       }
     })
   }
@@ -29,9 +32,9 @@ const logout = () => ({type: 'LOGGED_OUT'})
 
 
 // fetch user
-const fetchedUser = (userData) => ({type: 'FETCHED_USER', userData})
+const checkedUser = (userData) => ({type: 'CHECKED_USER', userData})
 
-const fetchingUser = (token) => {
+const checkingForUser = (token) => {
   return (dispatch) => {
     const token = Cookies.get('token')
     const url = 'http://localhost:5000/profile'
@@ -44,7 +47,8 @@ const fetchingUser = (token) => {
     })
       .then(res => res.json())
       .then(userData => {
-        dispatch(fetchedUser(userData))
+        dispatch(checkedUser(userData))
+        console.log('checkingUser', userData)
       })
   }
 }
@@ -102,4 +106,4 @@ const sendingMessage = (message) => {
 
 
 
-export { sendingMessage, fetchingConversation, receiveMessage, fetchingUser, loggingIn, logout, createSocket }
+export { sendingMessage, fetchingConversation, receiveMessage, checkingForUser, loggingIn, logout, createSocket }

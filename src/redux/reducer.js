@@ -11,28 +11,18 @@ const messageReducer = (state = '', action) => {
   }
 }
 
-// const logoutReducer = (state = null, action) => {
-//   switch (action.type) {
-//     case 'LOGGED_OUT':
-//       console.log('logging out')
-//       Cookies.expire('token')
-//       return null
-//     default:
-//       return state
-//   }
-// }
-
 const userReducer = (state = null, action) => {
   switch (action.type) {
-    case 'FETCHED_USER':
+    case 'LOGGED_IN':
       return action.userData
       console.log('user reducer', action.userData)
 
       case 'LOGGED_OUT':
-        console.log('logging out')
         Cookies.expire('token')
         return null
 
+      case 'CHECKED_USER':
+        return action.userData
     default:
       return state
   }
@@ -42,18 +32,12 @@ const selectedConversationReducer = (state = null, action) => {
   switch (action.type) {
     case 'FETCHED_CONVERSATION':
       return action.selectedConversation
-    default:
-      return state
-  }
-}
-
-const receiveMessageReducer = (state = null, action) => {
-  switch (action.type) {
     case 'RECEIVE_MESSAGE':
       let newMessages = state.selectedConversation.messages.slice()
       newMessages.push(action.message)
       return {
-        selectedConversation: { ...state.selectedConversation, messages: newMessages }
+         selectedConversation: { ...state.selectedConversation, messages: newMessages
+        }
       }
     default:
       return state
@@ -63,8 +47,7 @@ const receiveMessageReducer = (state = null, action) => {
 const rootReducer = combineReducers({
   messageInput: messageReducer,
   userData: userReducer,
-  selectedConversation: selectedConversationReducer,
-  receiveMessage: receiveMessageReducer,
+  selectedConversation: selectedConversationReducer
 })
 
 export default rootReducer

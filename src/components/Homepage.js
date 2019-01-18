@@ -23,9 +23,9 @@ class Homepage extends Component {
           />
         </ Grid.Row>
       </Grid>
-    ) : <Redirect to='/login' />
-)
-}
+      ) : <Redirect to='/login' />
+    )
+  }
 }
 
 const mapStateToProps = state => {

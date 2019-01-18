@@ -7,10 +7,9 @@ const Cookies = require('cookies-js')
 
 class Login extends Component {
   render() {
-    // Cookies.expire('token')
     console.log('token', Cookies.get('token'))
     return (
-      Cookies.get('token') ? <Redirect to='/conversations' /> :
+      Cookies.get('token') && this.props.currentUser ? <Redirect to='/conversations' /> :
       <div className='padded-top-large'>
         <Grid textAlign='center' verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
@@ -42,6 +41,11 @@ class Login extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    currentUser: state.userData
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -50,4 +54,4 @@ const mapDispatchToProps = dispatch => {
 }
 
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

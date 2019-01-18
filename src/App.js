@@ -7,10 +7,17 @@ import NotFound from './components/NotFound'
 import Navbar from './components/Navbar'
 import {Sticky} from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { createSocket } from './redux/actions.js'
+import { createSocket, checkingForUser } from './redux/actions.js'
+const Cookies = require('cookies-js')
 
 
 class App extends Component {
+
+  componentDidMount() {
+    if (Cookies.get('token')) {
+      this.props.checkingUser()
+    }
+  }
 
   render() {
     console.log('currentUser', this.props.currentUser)
@@ -40,7 +47,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    createSocket: () => {dispatch(createSocket())}
+    createSocket: () => {dispatch(createSocket())},
+    checkingUser: (token) => {dispatch(checkingForUser(token))}
   }
 }
 
