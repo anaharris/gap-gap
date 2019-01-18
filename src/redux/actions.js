@@ -2,9 +2,6 @@ import ActionCable from 'actioncable'
 const Cookies = require('cookies-js')
 
 // login
-
-const loggedIn = (userData) => ({type: 'LOGGED_IN', userData})
-
 const loggingIn = (username, password) => {
   return (dispatch) => {
     const url = 'http://localhost:5000/login'
@@ -21,7 +18,7 @@ const loggingIn = (username, password) => {
         alert(data.message)
       } else {
         Cookies.set('token', data.jwt)
-        dispatch(loggedIn(data.user))
+        dispatch(fetchingUser(data.jwt))
       }
     })
   }
@@ -29,6 +26,28 @@ const loggingIn = (username, password) => {
 
 // logout
 const logout = () => ({type: 'LOGGED_OUT'})
+
+
+// fetch user
+const fetchedUser = (userData) => ({type: 'FETCHED_USER', userData})
+
+const fetchingUser = (token) => {
+  return (dispatch) => {
+    const token = Cookies.get('token')
+    const url = 'http://localhost:5000/profile'
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        "Content-Type":"application/json",
+        "Authorization":`Bearer ${token}`
+      }
+    })
+      .then(res => res.json())
+      .then(userData => {
+        dispatch(fetchedUser(userData))
+      })
+  }
+}
 
 
 // on componentDidMount
@@ -52,7 +71,7 @@ const createSocket = () => {
         dispatch(receiveMessage(data))
       }
     })
-
+      console.log('socket')
       App.conversations = [messagesSubscription]
       window.App = App
   }
@@ -74,12 +93,13 @@ const fetchingConversation = (conversation) => {
 // onKeyDown for Conversation Input
 const sendMessage = (message) => ({type: 'SEND_MESSAGE', messageInput: message})
 
-// const sendingMessage = (e) => {
-//   return (dispatch) => {
-//
-//   }
-// }
+const sendingMessage = (message) => {
+  return (dispatch) => {
+    window.App.conversations[0].send({content: message, conversation_id: this.state.selectedChat.id})
+    dispatch(sendMessage(message))
+  }
+}
 
 
 
-export { sendMessage, fetchedConversation, receiveMessage, loggingIn, logout }
+export { sendingMessage, fetchingConversation, receiveMessage, fetchingUser, loggingIn, logout, createSocket }

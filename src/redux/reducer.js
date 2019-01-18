@@ -11,14 +11,28 @@ const messageReducer = (state = '', action) => {
   }
 }
 
+// const logoutReducer = (state = null, action) => {
+//   switch (action.type) {
+//     case 'LOGGED_OUT':
+//       console.log('logging out')
+//       Cookies.expire('token')
+//       return null
+//     default:
+//       return state
+//   }
+// }
+
 const userReducer = (state = null, action) => {
   switch (action.type) {
-    case 'LOGGED_IN':
+    case 'FETCHED_USER':
       return action.userData
-    case 'LOGGED_OUT':
-      console.log('logging out')
-      Cookies.expire('token')
-      return null
+      console.log('user reducer', action.userData)
+
+      case 'LOGGED_OUT':
+        console.log('logging out')
+        Cookies.expire('token')
+        return null
+
     default:
       return state
   }

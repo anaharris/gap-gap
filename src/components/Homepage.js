@@ -3,12 +3,14 @@ import MessagesContainer from './MessagesContainer'
 import ConversationsContainer from './ConversationsContainer'
 import { Redirect } from 'react-router-dom'
 import { Grid } from 'semantic-ui-react'
-const Cookies = require('cookies-js')
+import {connect} from 'react-redux'
 
+const Cookies = require('cookies-js')
 class Homepage extends Component {
 
   render(){
-  return Cookies.get('token') ? (
+  return (
+    this.props.conversations ? (
       <Grid columns={2} padded >
         <Grid.Row>
           <ConversationsContainer
@@ -22,8 +24,14 @@ class Homepage extends Component {
         </ Grid.Row>
       </Grid>
     ) : <Redirect to='/login' />
-  }
-
+)
+}
 }
 
-export default Homepage
+const mapStateToProps = state => {
+  return {
+    conversations: state.userData
+  }
+}
+
+export default connect(mapStateToProps)(Homepage)

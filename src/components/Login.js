@@ -1,43 +1,16 @@
 import React, { Component } from 'react'
 import { Redirect, Link } from 'react-router-dom'
 import { Grid, Form, Button, Segment, Message } from 'semantic-ui-react'
-import { loggingIn } from '../redux/actions.js'
 import { connect } from 'react-redux'
+import { loggingIn } from '../redux/actions.js'
 const Cookies = require('cookies-js')
 
 class Login extends Component {
-
-
-  userLogin = (username, password) => {
-    const url = 'http://localhost:5000/login'
-    let data = { user: {username: username, password: password} }
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    }).then(res => res.json())
-      .then(data => {
-        if (data.error) {
-          alert(data.message)
-        } else {
-          Cookies.set('token', data.jwt)
-          this.props.setUser(data.user)
-          console.log(data.user)
-        }
-      })
-  }
-
-  handleLoginSubmit = (event) => {
-    const username = event.target.username.value
-    const password = event.target.password.value
-    this.userLogin(username, password)
-
-  }
-
   render() {
-    return Cookies.get('token') ? <Redirect to='/conversations' /> : (
+    // Cookies.expire('token')
+    console.log('token', Cookies.get('token'))
+    return (
+      Cookies.get('token') ? <Redirect to='/conversations' /> :
       <div className='padded-top-large'>
         <Grid textAlign='center' verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
@@ -67,8 +40,8 @@ class Login extends Component {
       </div>
     )
   }
-
 }
+
 
 const mapDispatchToProps = dispatch => {
   return {

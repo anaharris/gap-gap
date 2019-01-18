@@ -24,7 +24,7 @@ class Navbar extends Component {
           </ Menu.Item>
           <Menu.Item
             name='logout'
-            onClick={this.props.onClick}
+            onClick={this.props.logout}
           />
         </ Menu.Menu>
       </Menu>
@@ -45,10 +45,10 @@ class Navbar extends Component {
 
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onClick: () => {dispatch(logout())}
-  }
-}
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     onClick: () => {dispatch(logout())}
+//   }
+// }
 
-export default connect(null, mapDispatchToProps)(Navbar)
+export default connect(null, {logout})(Navbar)
