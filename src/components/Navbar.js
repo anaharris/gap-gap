@@ -5,9 +5,10 @@ const Cookies = require('cookies-js')
 
 class Navbar extends Component {
 
+// style={{backgroundColor: '#286262'}}
   render() {
     return (
-      <Menu color={'green'} inverted>
+      <Menu color='green' inverted>
         <Menu.Item
           name='new conversation'
           onClick={this.homeClick}/>

@@ -7,6 +7,7 @@ import Homepage from './components/Homepage'
 import NotFound from './components/NotFound'
 import Navbar from './components/Navbar'
 import ActionCable from 'actioncable'
+import 'semantic-ui-css/semantic.css'
 const Cookies = require('cookies-js')
 
 
