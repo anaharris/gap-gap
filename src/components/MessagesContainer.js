@@ -16,7 +16,7 @@ class MessagesContainer extends Component {
         </ Segment>
         {this.props.selectedConversation ? (
           <Segment>
-            <Input chatInput={this.props.chatInput}/>
+            <Input />
           </Segment>
         ): null}
       </Grid.Column>
@@ -27,7 +27,6 @@ class MessagesContainer extends Component {
 const mapStateToProps = state => {
   return {
     selectedConversation: state.selectedConversation,
-    chatInput: state.messageInput
   }
 }
 

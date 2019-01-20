@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react'
 import { Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { fetchingConversation } from '../redux/actions.js'

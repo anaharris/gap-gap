@@ -1,4 +1,5 @@
 import ActionCable from 'actioncable'
+import store from './store.js'
 const Cookies = require('cookies-js')
 
 // login
@@ -62,7 +63,7 @@ const createSocket = () => {
     let App = {}
     App.cable = ActionCable.createConsumer(`${url}?token=${token}`)
 
-    const messagesSubscription = App.cable.subscriptions.create({channel: 'MessagesChannel', conversation_id: 1}, {
+    const messagesSubscription = App.cable.subscriptions.create({channel: 'MessagesChannel', conversation_id: store.getState().selectedConversation.id}, {
       connected: () => {
         console.log('connected to messages stream')
       },
@@ -88,7 +89,6 @@ const fetchingConversation = (id) => {
       .then(res => res.json())
       .then(data => {
         dispatch(fetchedConversation(data))
-        console.log('fetchedConversation', data)
       })
   }
 }
@@ -98,7 +98,7 @@ const sendMessage = (message) => ({type: 'SEND_MESSAGE', messageInput: message})
 
 const sendingMessage = (message) => {
   return (dispatch) => {
-    window.App.conversations[0].send({content: message, conversation_id: this.state.selectedChat.id})
+    window.App.conversations[0].send({content: message, conversation_id: store.getState().selectedConversation.id})
     dispatch(sendMessage(message))
   }
 }

@@ -32,6 +32,12 @@ class Input extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    chatInput: state.messageInput
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     onKeyDown: (message) => {dispatch(sendingMessage(message))}
@@ -39,4 +45,4 @@ const mapDispatchToProps = dispatch => {
 }
 
 
-export default connect(null, mapDispatchToProps)(Input)
+export default connect(mapStateToProps, mapDispatchToProps)(Input)
