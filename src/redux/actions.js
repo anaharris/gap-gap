@@ -71,6 +71,9 @@ const createSocket = () => {
         console.log('disconnected from messages stream')
       },
       received: (data) => {
+        // check data object
+        // if it has data.content it's a message
+        // if it doesn't it's a "{username} is typing (could be stored in data.status)"
         dispatch(receiveMessage(data))
       }
     })
@@ -104,5 +107,14 @@ const sendingMessage = (message) => {
 }
 
 
+// const sendStatus = (message) => ({type: 'SEND_STATUS', messageInput: message})
+//
+// const sendingStatus = (message) => {
+//   // format the status message
+//   return (dispatch) => {
+//     window.App.conversations[0].send({status: message, conversation_id: store.getState().selectedConversation.id})
+//     dispatch(sendMessage(message))
+//   }
+// }
 
 export { sendingMessage, fetchingConversation, receiveMessage, checkingForUser, loggingIn, logout, createSocket }

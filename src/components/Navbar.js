@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Search from './Search'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Dropdown } from 'semantic-ui-react'
 import { logout } from '../redux/actions.js'
 import { connect } from 'react-redux'
 
@@ -12,9 +12,13 @@ class Navbar extends Component {
         <Menu.Item
           name='new conversation'
           onClick={this.newClick}/>
-        <Menu.Item
-          name='add bot'
-          onClick={this.addBotClick}/>
+        <Dropdown text='Bots' pointing className='link item'>
+          <Dropdown.Menu>
+            <Dropdown.Item>Current Weather</Dropdown.Item>
+            <Dropdown.Item>Shiba Pictures</Dropdown.Item>
+            <Dropdown.Item>Cat Facts</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
         <Menu.Item
           name='create bot'
           onClick={this.createBotClick}/>
