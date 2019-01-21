@@ -7,6 +7,18 @@ const Cookies = require('cookies-js')
 
 class Login extends Component {
 
+  componentDidMount() {
+    document.body.style.backgroundImage = "url(https://images.unsplash.com/photo-1517200578024-62d131797ec8?ixlib=rb-1.2.1&auto=format&fit=crop&w=2604&q=80)"
+    document.body.style.backgroundPosition= 'bottom'
+    document.body.style.backgroundSsize = 'cover'
+    document.body.style.backgroundRepeat = 'no-repeat'
+    document.body.style.backgroundAttachment = 'fixed'
+  }
+
+  componentWillUnmount() {
+    document.body.style.backgroundImage = ""
+  }
+
   render() {
     return (
       Cookies.get('token') && this.props.currentUser ? <Redirect to='/conversations' /> :
@@ -15,12 +27,13 @@ class Login extends Component {
           <Grid.Column style={{ maxWidth: 450 }}>
             <Form size='large'
               onSubmit={(e) => {this.props.onSubmit(e.target.username.value, e.target.password.value)}}>
-              <Segment stacked>
+              <Segment stacked style={ {backgroundColor: '#f9dcd6'}}>
                 <Form.Input
                   name='username'
                   fluid icon='user'
                   iconPosition='left'
-                  placeholder='Username' />
+                  placeholder='Username'
+                  style={ {background: '#fcefec'}} />
                 <Form.Input
                  name='password'
                  fluid
@@ -28,13 +41,14 @@ class Login extends Component {
                  iconPosition='left'
                  placeholder='Password'
                  type='password'
+                 style={ {background: '#fcefec'}}
                  />
                 <Button color='pink' fluid size='large' type='submit'>
                   Login
                 </Button>
               </Segment>
             </Form>
-            <Message>
+            <Message style={ {backgroundColor: '#f9dcd6'}}>
                 New to us? <Link to='/signup'>Sign up</Link>
             </Message>
           </ Grid.Column>
