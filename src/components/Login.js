@@ -11,7 +11,7 @@ class Login extends Component {
     return (
       Cookies.get('token') && this.props.currentUser ? <Redirect to='/conversations' /> :
       <div className='padded-top-large'>
-        <Grid textAlign='center' verticalAlign='middle'>
+        <Grid textAlign='center' verticalAlign='middle' style={{paddingTop: '15%'}}>
           <Grid.Column style={{ maxWidth: 450 }}>
             <Form size='large'
               onSubmit={(e) => {this.props.onSubmit(e.target.username.value, e.target.password.value)}}>
@@ -29,7 +29,7 @@ class Login extends Component {
                  placeholder='Password'
                  type='password'
                  />
-                <Button color='green' fluid size='large' type='submit'>
+                <Button color='pink' fluid size='large' type='submit'>
                   Login
                 </Button>
               </Segment>

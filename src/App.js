@@ -6,6 +6,7 @@ import Homepage from './components/Homepage'
 import NotFound from './components/NotFound'
 import Navbar from './components/Navbar'
 import {Sticky} from 'semantic-ui-react'
+import 'semantic-ui-css/semantic.css'
 import { connect } from 'react-redux'
 import { createSocket, checkingForUser } from './redux/actions.js'
 const Cookies = require('cookies-js')

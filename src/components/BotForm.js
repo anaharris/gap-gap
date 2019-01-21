@@ -7,10 +7,6 @@ class BotForm extends Component {
     open: false
   }
 
-  let botOptions = {
-    text:
-  }
-
   render() {
     return (
     <Modal>
