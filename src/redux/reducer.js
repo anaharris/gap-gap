@@ -15,11 +15,9 @@ const userReducer = (state = null, action) => {
   switch (action.type) {
     case 'LOGGED_IN':
       return action.userData
-
       case 'LOGGED_OUT':
         Cookies.expire('token')
         return null
-
       case 'CHECKED_USER':
         return action.userData
     default:
@@ -32,12 +30,9 @@ const selectedConversationReducer = (state = null, action) => {
     case 'FETCHED_CONVERSATION':
       return action.selectedConversation
     case 'RECEIVE_MESSAGE':
-      let newMessages = state.selectedConversation.messages.slice()
+      let newMessages = state.messages.slice()
       newMessages.push(action.message)
-      return {
-         selectedConversation: { ...state.selectedConversation, messages: newMessages
-        }
-      }
+      return {...state, messages: newMessages}
     default:
       return state
   }

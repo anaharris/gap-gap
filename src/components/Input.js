@@ -13,28 +13,28 @@ class Input extends Component {
     this.setState({text: e.target.value})
   }
 
+  onSubmit = (e) => {
+    e.preventDefault()
+  }
+
   render() {
     return (
-        <Form>
+        <Form onSubmit={this.onSubmit}>
           <TextArea
             placeholder='start typing...'
             style={{ minHeight: 100 }}
             onChange={this.onChange}
             onKeyDown={(e) => {
               if (e.keyCode === 13) {
-                this.props.chatInput(e.target.value)
+                this.props.onKeyDown(e.target.value)
+                this.setState({text:''})
               }
             }
           }
+          value={this.state.text}
           />
         </ Form>
     )
-  }
-}
-
-const mapStateToProps = state => {
-  return {
-    chatInput: state.messageInput
   }
 }
 
@@ -45,4 +45,4 @@ const mapDispatchToProps = dispatch => {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Input)
+export default connect(null, mapDispatchToProps)(Input)

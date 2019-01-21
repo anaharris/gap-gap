@@ -63,7 +63,7 @@ const createSocket = () => {
     let App = {}
     App.cable = ActionCable.createConsumer(`${url}?token=${token}`)
 
-    const messagesSubscription = App.cable.subscriptions.create({channel: 'MessagesChannel', conversation_id: store.getState().selectedConversation.id}, {
+    const messagesSubscription = App.cable.subscriptions.create({channel: 'MessagesChannel', conversation_id: store.getState().selectedConversation}, {
       connected: () => {
         console.log('connected to messages stream')
       },
