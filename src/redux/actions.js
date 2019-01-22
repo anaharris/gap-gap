@@ -182,7 +182,10 @@ const openNewBotModal = () => ({type: 'OPEN_NEW_BOT'})
 
 const closeNewBotModal = () => ({type: 'CLOSE_NEW_BOT'})
 
+// edit profile
+const openProfileModal = () => ({type: 'OPEN_PROFILE_MODAL'})
 
+const closeProfileModal = () => ({type: 'CLOSE_PROFILE_MODAL'})
 
 // const sendStatus = (message) => ({type: 'SEND_STATUS', messageInput: message})
 //
@@ -194,4 +197,4 @@ const closeNewBotModal = () => ({type: 'CLOSE_NEW_BOT'})
 //   }
 // }
 
-export { sendingMessage, fetchingConversation, receiveMessage, checkingForUser, loggingIn, logout, createSocket, fetchingAllUsers, creatingNewConversation, openNewConversationModal, closeNewConversationModal, closeNewBotModal, openNewBotModal }
+export { sendingMessage, fetchingConversation, receiveMessage, checkingForUser, loggingIn, logout, createSocket, fetchingAllUsers, creatingNewConversation, openNewConversationModal, closeNewConversationModal, closeNewBotModal, openNewBotModal, openProfileModal, closeProfileModal }

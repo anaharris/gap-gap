@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { Menu, Dropdown, Modal } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { logout, openNewConversationModal, closeNewConversationModal, openNewBotModal, closeNewBotModal } from '../redux/actions.js'
+import { logout, openNewConversationModal, closeNewConversationModal, openNewBotModal, closeNewBotModal, openProfileModal, closeProfileModal } from '../redux/actions.js'
 import NewConversation from './NewConversation'
 import BotForm from './BotForm'
+import Profile from './Profile'
 
 
 class Navbar extends Component {
@@ -45,10 +46,18 @@ class Navbar extends Component {
           <BotForm/>
         </Modal>
         <Menu.Menu position='right'>
-          <Menu.Item
-            name='profile'
-            onClick={this.profileClick}
-          />
+        <Modal
+          size='small'
+          trigger={<Menu.Item
+                      name='profile'
+                      onClick={this.props.openProfileModal}
+                      />}
+          open={this.props.profileModal}
+          onClose={this.props.closeProfileModal}
+        >
+        <Modal.Header> Profile </Modal.Header>
+        <Profile/>
+        </Modal>
           <Menu.Item
             name='logout'
             onClick={this.props.logout}
@@ -58,24 +67,13 @@ class Navbar extends Component {
     )
   }
 
-  addBotClick = () => {
-    console.log('clicking add bot')
-  }
-
-  createBotClick = () => {
-    console.log('clicking create bot')
-  }
-
-  profileClick = () => {
-    console.log('clicking profile')
-  }
-
 }
 
 const mapStateToProps = state => {
   return {
     conversationModal: state.conversationModal,
-    newBotModal: state.newBotModal
+    newBotModal: state.newBotModal,
+    profileModal: state.profileModal
   }
 }
 
@@ -85,7 +83,9 @@ const mapDispatchToProps = dispatch => {
     openNewConversationModal : () => {dispatch(openNewConversationModal())},
     closeNewConversationModal: () => {dispatch(closeNewConversationModal())},
     openNewBotModal: () => {dispatch(openNewBotModal())},
-    closeNewBotModal: () => {dispatch(closeNewBotModal())}
+    closeNewBotModal: () => {dispatch(closeNewBotModal())},
+    openProfileModal: () => {dispatch(openProfileModal())},
+    closeProfileModal: () => {dispatch(closeProfileModal())}
   }
 }
 

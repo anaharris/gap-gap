@@ -75,6 +75,17 @@ const botModalReducer = (state = false, action) => {
 }
 
 
+const profileModalReducer = (state = false, action) => {
+  switch (action.type) {
+    case 'OPEN_PROFILE_MODAL':
+      return true
+    case ('CLOSE_PROFILE_MODAL'):
+      return false
+    default:
+      return state
+  }
+}
+
 
 const rootReducer = combineReducers({
   messageInput: messageReducer,
@@ -82,7 +93,8 @@ const rootReducer = combineReducers({
   selectedConversation: selectedConversationReducer,
   allUsers: allUsersRecuder,
   conversationModal: conversationModalReducer,
-  newBotModal: botModalReducer
+  newBotModal: botModalReducer,
+  profileModal: profileModalReducer
 })
 
 export default rootReducer
