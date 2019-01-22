@@ -19,10 +19,13 @@ class Input extends Component {
 
   render() {
     return (
-        <Form onSubmit={this.onSubmit}>
+        <Form
+          onSubmit={this.onSubmit}
+          style={{backgroundColor: '#f9dcd6'}}
+        >
           <TextArea
             placeholder='start typing...'
-            style={{ minHeight: 100 }}
+            style={{ minHeight: 100, backgroundColor: '#fcefec' }}
             onChange={this.onChange}
             onKeyDown={(e) => {
               if (e.keyCode === 13) {

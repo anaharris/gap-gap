@@ -16,3 +16,11 @@ code {
 .conv-name {
   font-weight: 600;
 }
+
+#greeting {
+  color: white;
+  font-size: 38px;
+  font-weight: bold;
+  position: relative;
+  margin: 3% auto;
+}

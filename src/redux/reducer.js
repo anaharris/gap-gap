@@ -38,10 +38,23 @@ const selectedConversationReducer = (state = null, action) => {
   }
 }
 
+const allUsersRecuder = (state = [], action) => {
+  switch (action.type) {
+    case 'FETCHED_ALL_USERS':
+      return action.allUsers
+    default:
+      return state
+  }
+}
+
+
+
+
 const rootReducer = combineReducers({
   messageInput: messageReducer,
   userData: userReducer,
-  selectedConversation: selectedConversationReducer
+  selectedConversation: selectedConversationReducer,
+  allUsers: allUsersRecuder
 })
 
 export default rootReducer

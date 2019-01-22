@@ -6,8 +6,11 @@ import { fetchingConversation } from '../redux/actions.js'
 class Conversation extends Component {
   render() {
     return (
-      <Segment onClick={() => this.props.onClick(this.props.conversation.id)}>
-        {this.props.conversation.topic}
+      <Segment
+        onClick={() => this.props.onClick(this.props.conversation.id)}
+        style={{backgroundColor: '#f9dcd6'}}
+      >
+          {this.props.conversation.topic}
       </Segment>
     )
   }

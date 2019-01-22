@@ -7,19 +7,22 @@ import { connect } from 'react-redux'
 class MessagesContainer extends Component {
   render() {
     return (
+      this.props.selectedConversation ?
       <Grid.Column width={12}>
-      <Segment >
-        {this.props.selectedConversation ?
-          this.props.selectedConversation.messages.map(m => (
+      <Segment
+        style={{
+          backgroundColor: '#f9dcd6',
+          height: '550px',
+          overflow: 'scroll'
+        }} >
+          {this.props.selectedConversation.messages.map(m => (
               <Message key={m.id} message={m}/>
-            )) : <p>Select a conversation</p>}
+            ))}
         </ Segment>
-        {this.props.selectedConversation ? (
-          <Segment>
-            <Input />
-          </Segment>
-        ): null}
-      </Grid.Column>
+        <Segment>
+          <Input />
+        </Segment>
+      </Grid.Column> : <p id='greeting'>hi, {this.props.currentUser.name}</p>
     )
   }
 }
@@ -27,6 +30,7 @@ class MessagesContainer extends Component {
 const mapStateToProps = state => {
   return {
     selectedConversation: state.selectedConversation,
+    currentUser: state.userData
   }
 }
 

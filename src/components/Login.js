@@ -16,7 +16,7 @@ class Login extends Component {
   }
 
   componentWillUnmount() {
-    document.body.style.backgroundImage = ""
+    document.body.style.backgroundImage = "url(https://images.unsplash.com/photo-1508013861974-9f6347163ebe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2555&q=80)"
   }
 
   render() {
@@ -43,7 +43,7 @@ class Login extends Component {
                  type='password'
                  style={ {background: '#fcefec'}}
                  />
-                <Button color='pink' fluid size='large' type='submit'>
+                <Button color='orange' fluid size='large' type='submit'>
                   Login
                 </Button>
               </Segment>

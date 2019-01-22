@@ -106,6 +106,27 @@ const sendingMessage = (message) => {
   }
 }
 
+// fetch all users
+const fetchedAllUsers = (allUsers) => ({type: 'FETCHED_ALL_USERS', allUsers})
+
+const fetchingAllUsers = () => {
+  return (dispatch) => {
+    const token = Cookies.get('token')
+    const url = 'http://localhost:5000/users'
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        "Content-Type":"application/json",
+        "Authorization":`Bearer ${token}`
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        dispatch(fetchedAllUsers(data))
+      })
+  }
+}
 
 // const sendStatus = (message) => ({type: 'SEND_STATUS', messageInput: message})
 //
@@ -117,4 +138,4 @@ const sendingMessage = (message) => {
 //   }
 // }
 
-export { sendingMessage, fetchingConversation, receiveMessage, checkingForUser, loggingIn, logout, createSocket }
+export { sendingMessage, fetchingConversation, receiveMessage, checkingForUser, loggingIn, logout, createSocket, fetchingAllUsers }

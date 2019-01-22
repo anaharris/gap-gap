@@ -1,17 +1,26 @@
 import React, { Component } from 'react'
-import Search from './Search'
-import { Menu, Dropdown } from 'semantic-ui-react'
-import { logout } from '../redux/actions.js'
+import { Menu, Dropdown, Modal } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import { logout } from '../redux/actions.js'
+import NewConversation from './NewConversation'
+
 
 class Navbar extends Component {
 
   render() {
     return (
-      <Menu color={'green'} inverted>
-        <Menu.Item
+      <Menu style={ {backgroundColor: '#cc5500'}} inverted>
+        <Menu.Item>
+          logo
+        </Menu.Item>
+        <Modal size='small' trigger={
+          <Menu.Item
           name='new conversation'
-          onClick={this.newClick}/>
+        />
+        }>
+          <Modal.Header> New Conversation </Modal.Header>
+          <NewConversation />
+        </Modal>
         <Dropdown text='Bots' pointing className='link item'>
           <Dropdown.Menu>
             <Dropdown.Item>Current Weather</Dropdown.Item>
@@ -23,9 +32,10 @@ class Navbar extends Component {
           name='create bot'
           onClick={this.createBotClick}/>
         <Menu.Menu position='right'>
-          <Menu.Item>
-            <Search />
-          </ Menu.Item>
+          <Menu.Item
+            name='profile'
+            onClick={this.profileClick}
+          />
           <Menu.Item
             name='logout'
             onClick={this.props.logout}
@@ -33,10 +43,6 @@ class Navbar extends Component {
         </ Menu.Menu>
       </Menu>
     )
-  }
-
-  newClick = () => {
-    console.log('clicking new')
   }
 
   addBotClick = () => {
@@ -47,7 +53,16 @@ class Navbar extends Component {
     console.log('clicking create bot')
   }
 
+  profileClick = () => {
+    console.log('clicking profile')
+  }
+
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => {dispatch(logout())}
+  }
+}
 
-export default connect(null, {logout})(Navbar)
+export default connect(null, mapDispatchToProps)(Navbar)
