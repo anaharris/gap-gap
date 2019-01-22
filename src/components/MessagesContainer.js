@@ -15,7 +15,7 @@ class MessagesContainer extends Component {
           height: '550px',
           overflow: 'scroll'
         }} >
-          {this.props.selectedConversation.messages.map(m => (
+            {this.props.selectedConversation.messages.map(m => (
               <Message key={m.id} message={m}/>
             ))}
         </ Segment>

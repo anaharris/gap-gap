@@ -131,23 +131,43 @@ const fetchingAllUsers = () => {
 // create new conversation
 const createdNewConversation = (conversation) => ({type: 'NEW_CONVERSATION', conversation})
 
-const creatingNewConversation = (data) => {
+const creatingNewConversation = (payload) => {
   return (dispatch) => {
     const token = Cookies.get('token')
-    const url = 'http://localhost:5000/conversations'
-    fetch(url, {
+    fetch("http://localhost:5000/conversations", {
       method: 'POST',
       headers: {
-        "Content-Type":"application/json",
+        "Content-Type": "application/json",
+        "Accept": "application/json",
         "Authorization":`Bearer ${token}`
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify({topic: payload.topic})
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data)
-        dispatch(createdNewConversation(data))
-      })
+        fetch("http://localhost:5000/user_conversations", {
+          method: 'POST',
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization":`Bearer ${token}`
+          },
+          body: JSON.stringify({conversation_id: data.conversation.id, user_id: parseInt(payload.userId)})
+        }).then(res => res.json())
+          .then(resData => {
+            console.log(resData.userConversation.conversation_id, store.getState().userData.id)
+            fetch("http://localhost:5000/user_conversations", {
+              method: 'POST',
+              headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "Authorization":`Bearer ${token}`
+              },
+              body: JSON.stringify({conversation_id: resData.userConversation.conversation_id, user_id: store.getState().userData.id})
+            }).then(res => res.json())
+              .then(data => createdNewConversation(data.userConversation))
+          })
+        })
   }
 }
 
