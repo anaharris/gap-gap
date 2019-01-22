@@ -129,6 +129,10 @@ const fetchingAllUsers = () => {
 }
 
 // create new conversation
+const openNewConversationModal = () => ({type: 'OPEN_NEW_CONVERSATION'})
+
+const closeNewConversationModal = () => ({type: 'CLOSE_NEW_CONVERSATION'})
+
 const createdNewConversation = (conversation) => ({type: 'NEW_CONVERSATION', conversation})
 
 const creatingNewConversation = (payload) => {
@@ -171,6 +175,8 @@ const creatingNewConversation = (payload) => {
   }
 }
 
+
+
 // const sendStatus = (message) => ({type: 'SEND_STATUS', messageInput: message})
 //
 // const sendingStatus = (message) => {
@@ -181,4 +187,4 @@ const creatingNewConversation = (payload) => {
 //   }
 // }
 
-export { sendingMessage, fetchingConversation, receiveMessage, checkingForUser, loggingIn, logout, createSocket, fetchingAllUsers, creatingNewConversation }
+export { sendingMessage, fetchingConversation, receiveMessage, checkingForUser, loggingIn, logout, createSocket, fetchingAllUsers, creatingNewConversation, openNewConversationModal, closeNewConversationModal }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Header, Form, Modal, Select } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { fetchingAllUsers, creatingNewConversation } from '../redux/actions.js'
+import { fetchingAllUsers, creatingNewConversation, closeNewConversationModal } from '../redux/actions.js'
 
 class NewConversation extends Component {
 
@@ -28,6 +28,7 @@ class NewConversation extends Component {
       userId: this.state.userId
     }
     this.props.newConversation(data)
+    this.props.closeNewConversationModal()
   }
 
   render() {
@@ -80,7 +81,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchingAllUsers: () => {dispatch(fetchingAllUsers())},
-    newConversation: (data) => {dispatch(creatingNewConversation(data))}
+    newConversation: (data) => {dispatch(creatingNewConversation(data))},
+    closeNewConversationModal: () => {dispatch(closeNewConversationModal())}
   }
 }
 

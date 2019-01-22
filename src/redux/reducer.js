@@ -51,6 +51,16 @@ const allUsersRecuder = (state = [], action) => {
   }
 }
 
+const conversationModalReducer = (state = false, action) => {
+  switch (action.type) {
+    case 'OPEN_NEW_CONVERSATION':
+      return true
+    case 'CLOSE_NEW_CONVERSATION':
+      return false
+    default:
+      return state
+  }
+}
 
 
 
@@ -58,7 +68,8 @@ const rootReducer = combineReducers({
   messageInput: messageReducer,
   userData: userReducer,
   selectedConversation: selectedConversationReducer,
-  allUsers: allUsersRecuder
+  allUsers: allUsersRecuder,
+  conversationModal: conversationModalReducer
 })
 
 export default rootReducer

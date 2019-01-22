@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Menu, Dropdown, Modal } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { logout } from '../redux/actions.js'
+import { logout, openNewConversationModal, closeNewConversationModal } from '../redux/actions.js'
 import NewConversation from './NewConversation'
 
 
@@ -13,11 +13,15 @@ class Navbar extends Component {
         <Menu.Item>
           logo
         </Menu.Item>
-        <Modal size='small' trigger={
-          <Menu.Item
-          name='new conversation'
-        />
-        }>
+        <Modal
+          size='small'
+          trigger={<Menu.Item
+                      name='new conversation'
+                      onClick={this.props.openNewConversationModal}
+                    />}
+          open={this.props.conversationModal}
+          onClose={this.props.closeNewConversationModal}
+        >
           <Modal.Header> New Conversation </Modal.Header>
           <NewConversation />
         </Modal>
@@ -59,10 +63,18 @@ class Navbar extends Component {
 
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-    logout: () => {dispatch(logout())}
+    conversationModal: state.conversationModal
   }
 }
 
-export default connect(null, mapDispatchToProps)(Navbar)
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => {dispatch(logout())},
+    openNewConversationModal : () => {dispatch(openNewConversationModal())},
+    closeNewConversationModal: () => {dispatch(closeNewConversationModal())}
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar)
