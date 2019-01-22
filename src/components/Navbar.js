@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Menu, Dropdown, Modal } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { logout, openNewConversationModal, closeNewConversationModal } from '../redux/actions.js'
+import { logout, openNewConversationModal, closeNewConversationModal, openNewBotModal, closeNewBotModal } from '../redux/actions.js'
 import NewConversation from './NewConversation'
+import BotForm from './BotForm'
 
 
 class Navbar extends Component {
@@ -22,7 +23,7 @@ class Navbar extends Component {
           open={this.props.conversationModal}
           onClose={this.props.closeNewConversationModal}
         >
-          <Modal.Header> New Conversation </Modal.Header>
+          <Modal.Header> Create a New Conversation </Modal.Header>
           <NewConversation />
         </Modal>
         <Dropdown text='Bots' pointing className='link item'>
@@ -36,9 +37,12 @@ class Navbar extends Component {
           size='small'
           trigger={<Menu.Item
                       name='create bot'
-                      onClick={this.createBotClick}/>}
-          open={this.props.addBot}
+                      onClick={this.props.openNewBotModal}/>}
+          open={this.props.newBotModal}
+          onClose={this.props.closeNewBotModal}
         >
+          <Modal.Header> Create a New Bot </Modal.Header>
+          <BotForm/>
         </Modal>
         <Menu.Menu position='right'>
           <Menu.Item
@@ -70,7 +74,8 @@ class Navbar extends Component {
 
 const mapStateToProps = state => {
   return {
-    conversationModal: state.conversationModal
+    conversationModal: state.conversationModal,
+    newBotModal: state.newBotModal
   }
 }
 
@@ -78,7 +83,9 @@ const mapDispatchToProps = dispatch => {
   return {
     logout: () => {dispatch(logout())},
     openNewConversationModal : () => {dispatch(openNewConversationModal())},
-    closeNewConversationModal: () => {dispatch(closeNewConversationModal())}
+    closeNewConversationModal: () => {dispatch(closeNewConversationModal())},
+    openNewBotModal: () => {dispatch(openNewBotModal())},
+    closeNewBotModal: () => {dispatch(closeNewBotModal())}
   }
 }
 

@@ -63,6 +63,17 @@ const conversationModalReducer = (state = false, action) => {
   }
 }
 
+const botModalReducer = (state = false, action) => {
+  switch (action.type) {
+    case 'OPEN_NEW_BOT':
+      return true
+    case 'CLOSE_NEW_BOT':
+      return false
+    default:
+      return state
+  }
+}
+
 
 
 const rootReducer = combineReducers({
@@ -70,7 +81,8 @@ const rootReducer = combineReducers({
   userData: userReducer,
   selectedConversation: selectedConversationReducer,
   allUsers: allUsersRecuder,
-  conversationModal: conversationModalReducer
+  conversationModal: conversationModalReducer,
+  newBotModal: botModalReducer
 })
 
 export default rootReducer

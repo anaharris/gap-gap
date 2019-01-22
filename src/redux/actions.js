@@ -148,7 +148,7 @@ const creatingNewConversation = (payload) => {
       body: JSON.stringify({topic: payload.topic})
     })
       .then(res => res.json())
-      .then(data => {
+      .then(conversationData => {
         fetch("http://localhost:5000/user_conversations", {
           method: 'POST',
           headers: {
@@ -156,7 +156,7 @@ const creatingNewConversation = (payload) => {
             "Accept": "application/json",
             "Authorization":`Bearer ${token}`
           },
-          body: JSON.stringify({conversation_id: data.conversation.id, user_id: parseInt(payload.userId)})
+          body: JSON.stringify({conversation_id: conversationData.conversation.id, user_id: parseInt(payload.userId)})
         }).then(res => res.json())
           .then(resData => {
             fetch("http://localhost:5000/user_conversations", {
@@ -169,13 +169,18 @@ const creatingNewConversation = (payload) => {
               body: JSON.stringify({conversation_id: resData.userConversation.conversation_id, user_id: store.getState().userData.id})
             }).then(res => res.json())
               .then(data => {
-                console.log(data)
-                dispatch(createdNewConversation(data.userConversation))
+                console.log(conversationData)
+                dispatch(createdNewConversation(conversationData.conversation))
               })
           })
         })
   }
 }
+
+// create new bot
+const openNewBotModal = () => ({type: 'OPEN_NEW_BOT'})
+
+const closeNewBotModal = () => ({type: 'CLOSE_NEW_BOT'})
 
 
 
@@ -189,4 +194,4 @@ const creatingNewConversation = (payload) => {
 //   }
 // }
 
-export { sendingMessage, fetchingConversation, receiveMessage, checkingForUser, loggingIn, logout, createSocket, fetchingAllUsers, creatingNewConversation, openNewConversationModal, closeNewConversationModal }
+export { sendingMessage, fetchingConversation, receiveMessage, checkingForUser, loggingIn, logout, createSocket, fetchingAllUsers, creatingNewConversation, openNewConversationModal, closeNewConversationModal, closeNewBotModal, openNewBotModal }
