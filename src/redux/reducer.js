@@ -15,15 +15,16 @@ const userReducer = (state = null, action) => {
   switch (action.type) {
     case 'LOGGED_IN':
       return action.userData
-      case 'LOGGED_OUT':
-        Cookies.expire('token')
-        return null
-      case 'CHECKED_USER':
-        return action.userData
-      case 'NEW_CONVERSATION':
-        let newConversations = state.conversations.slice()
-        newConversations.push(action.conversation)
-        return {...state, conversations: newConversations}
+    case 'LOGGED_OUT':
+      Cookies.expire('token')
+      return null
+    case 'CHECKED_USER':
+      return action.userData
+    case 'NEW_CONVERSATION':
+      console.log(action)
+      let newConversations = state.conversations.slice()
+      newConversations.push(action.conversation)
+      return {...state, conversations: newConversations}
     default:
       return state
   }

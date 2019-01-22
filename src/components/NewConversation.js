@@ -22,12 +22,13 @@ class NewConversation extends Component {
     this.setState({userId: e.target.id})
   }
 
-  buttonClick = () => {
+  formSubmit = () => {
     let data = {
       topic: this.state.topic,
       userId: this.state.userId
     }
-    this.props.newConversation(data)
+    console.log(data)
+    this.props.creatingNewConversation(data)
     this.props.closeNewConversationModal()
   }
 
@@ -46,7 +47,7 @@ class NewConversation extends Component {
     return (
         <Modal.Content>
           <Header>Topic:</Header>
-          <Form >
+          <Form onSubmit={this.formSubmit}>
             <Form.Input onChange={this.inputChange}/>
             <Header>To:</Header>
             <Form.Input
@@ -62,7 +63,7 @@ class NewConversation extends Component {
               size='small'
               content='Create'
               color='orange'
-              onClick={this.buttonClick}
+              onClick={this.closeNewConversationModal}
             />
           </Form>
         </Modal.Content>
@@ -81,7 +82,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchingAllUsers: () => {dispatch(fetchingAllUsers())},
-    newConversation: (data) => {dispatch(creatingNewConversation(data))},
+    creatingNewConversation: (data) => {dispatch(creatingNewConversation(data))},
     closeNewConversationModal: () => {dispatch(closeNewConversationModal())}
   }
 }

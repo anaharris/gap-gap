@@ -32,9 +32,14 @@ class Navbar extends Component {
             <Dropdown.Item>Cat Facts</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
-        <Menu.Item
-          name='create bot'
-          onClick={this.createBotClick}/>
+        <Modal
+          size='small'
+          trigger={<Menu.Item
+                      name='create bot'
+                      onClick={this.createBotClick}/>}
+          open={this.props.addBot}
+        >
+        </Modal>
         <Menu.Menu position='right'>
           <Menu.Item
             name='profile'
