@@ -128,6 +128,29 @@ const fetchingAllUsers = () => {
   }
 }
 
+// create new conversation
+const createdNewConversation = (conversation) => ({type: 'NEW_CONVERSATION', conversation})
+
+const creatingNewConversation = (data) => {
+  return (dispatch) => {
+    const token = Cookies.get('token')
+    const url = 'http://localhost:5000/conversations'
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        "Content-Type":"application/json",
+        "Authorization":`Bearer ${token}`
+      },
+      body: JSON.stringify(data)
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        dispatch(createdNewConversation(data))
+      })
+  }
+}
+
 // const sendStatus = (message) => ({type: 'SEND_STATUS', messageInput: message})
 //
 // const sendingStatus = (message) => {
@@ -138,4 +161,4 @@ const fetchingAllUsers = () => {
 //   }
 // }
 
-export { sendingMessage, fetchingConversation, receiveMessage, checkingForUser, loggingIn, logout, createSocket, fetchingAllUsers }
+export { sendingMessage, fetchingConversation, receiveMessage, checkingForUser, loggingIn, logout, createSocket, fetchingAllUsers, creatingNewConversation }

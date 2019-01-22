@@ -20,6 +20,10 @@ const userReducer = (state = null, action) => {
         return null
       case 'CHECKED_USER':
         return action.userData
+      case 'NEW_CONVERSATION':
+        let newConversations = state.conversations.slice()
+        newConversations.push(action.conversation)
+        return {...state, conversations: newConversations}
     default:
       return state
   }
