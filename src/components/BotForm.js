@@ -7,7 +7,8 @@ class BotForm extends Component {
   state = {
     name: '',
     trigger: '',
-    response: ''
+    response: '',
+    avatar: ''
   }
 
   handleName = (e) => {
@@ -20,6 +21,10 @@ class BotForm extends Component {
 
   handleResponse = (e) => {
     this.setState({response: e.target.value})
+  }
+
+  handleAvatar = (e) => {
+    this.setState({avatar: e.target.value})
   }
 
   formSubmit = () => {
@@ -46,6 +51,11 @@ class BotForm extends Component {
           <Form.Input
             placeholder='Response'
             onChange={this.handleResponse}
+          />
+          <Header>Avatar:</Header>
+          <Form.Input
+            placeholder='URL'
+            onChange={this.handleAvatar}
           />
           <Button
             fluid

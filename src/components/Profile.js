@@ -48,7 +48,11 @@ class Profile extends Component {
   render() {
     return(
       <Modal.Content image>
-        <Image wrapped size='medium' src={this.props.userData.avatar}/>
+        <Image
+          wrapped
+          size='medium'
+          src={this.props.userData.avatar}
+        />
         <Modal.Description>
           <Header>Display Name:</Header>
           <p>{this.props.userData.name}</p>

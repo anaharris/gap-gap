@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Menu, Dropdown, Modal } from 'semantic-ui-react'
+import { Menu, Dropdown, Modal, Image, Header, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { logout, openNewConversationModal, closeNewConversationModal, openNewBotModal, closeNewBotModal, openProfileModal, closeProfileModal } from '../redux/actions.js'
 import NewConversation from './NewConversation'
 import BotForm from './BotForm'
 import Profile from './Profile'
+import BotInfo from './BotInfo'
 
 
 class Navbar extends Component {
@@ -27,11 +28,15 @@ class Navbar extends Component {
           <Modal.Header> Create a New Conversation </Modal.Header>
           <NewConversation />
         </Modal>
-        <Dropdown text='Bots' pointing className='link item'>
+        <Dropdown
+          text='Bots'
+          className='link item'
+        >
           <Dropdown.Menu>
-            <Dropdown.Item>Current Weather</Dropdown.Item>
-            <Dropdown.Item>Shiba Pictures</Dropdown.Item>
-            <Dropdown.Item>Cat Facts</Dropdown.Item>
+            {this.props.allBots.map(bot => {
+              return (
+                <BotInfo bot={bot}/>
+              )})}
           </Dropdown.Menu>
         </Dropdown>
         <Modal
@@ -73,7 +78,8 @@ const mapStateToProps = state => {
   return {
     conversationModal: state.conversationModal,
     newBotModal: state.newBotModal,
-    profileModal: state.profileModal
+    profileModal: state.profileModal,
+    allBots: state.allBots
   }
 }
 
