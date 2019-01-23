@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Modal, Header, Form } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { closeNewBotModal } from '../redux/actions.js'
+import { closeNewBotModal, creatingNewBot } from '../redux/actions.js'
 
 class BotForm extends Component {
   state = {
@@ -28,6 +28,8 @@ class BotForm extends Component {
   }
 
   formSubmit = () => {
+    let payload = this.state
+    this.props.creatingNewBot(payload)
     this.props.closeNewBotModal()
   }
 
@@ -73,7 +75,8 @@ class BotForm extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    closeNewBotModal: () => {dispatch(closeNewBotModal())}
+    closeNewBotModal: () => {dispatch(closeNewBotModal())},
+    creatingNewBot: (payload) => {dispatch(creatingNewBot(payload))}
   }
 }
 

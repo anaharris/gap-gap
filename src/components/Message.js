@@ -1,12 +1,23 @@
 import React, { Component } from 'react'
+import { List, Image } from 'semantic-ui-react'
+
 
 class Message extends Component {
 
   render() {
     return (
-      <p><span className='conv-name'>{this.props.message.user_name}:</span> {this.props.message.content} </p>
+      <List.Item>
+        <Image avatar src={this.props.message.avatar}/>
+        <List.Content>
+          <List.Header>{this.props.message.user_name}</List.Header>
+          <List.Description>
+            {this.props.message.content}
+          </List.Description>
+        </List.Content>
+      </List.Item>
     )
   }
 }
 
 export default Message
+ 

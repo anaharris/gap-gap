@@ -90,6 +90,8 @@ const allBotsReducer = (state = [], action) => {
   switch (action.type) {
     case 'FETCHED_ALL_BOTS':
       return action.bots
+    case 'CREATED_NEW_BOT':
+      return [...state, action.bot]
     default:
       return state
   }

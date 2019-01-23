@@ -1,16 +1,23 @@
 import React, { Component } from 'react'
 import { Dropdown, Modal, Image, Header, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import { addingBot } from '../redux/actions.js'
 
 class BotInfo extends Component {
 
-    state = {
-      open: false
-    }
+  state = {
+    bot: this.props.bot,
+    open: false
+  }
 
-    onButtonClick = () => {
-      this.setState({open: false})
+  onButtonClick = () => {
+    let payload = {
+      bot_id: this.state.bot.id,
+      conversation_id: this.props.selectedConversation.id
     }
+    this.props.addingBot(payload)
+    this.setState({open: false})
+  }
 
   render() {
     return (
@@ -45,7 +52,7 @@ class BotInfo extends Component {
             > Cancel </Button>
             <Button
               color='green'
-              onClick={this.onButtonClick}
+              onClick={() => this.onButtonClick()}
               size='small'
             > Add </Button>
           </Modal.Actions>
@@ -54,5 +61,16 @@ class BotInfo extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    selectedConversation: state.selectedConversation
+  }
+}
 
-export default connect()(BotInfo)
+const mapDispatchToProps = dispatch => {
+  return {
+    addingBot: (payload) => {dispatch(addingBot(payload))}
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BotInfo)

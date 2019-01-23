@@ -193,26 +193,47 @@ const fetchingAllBots = () => {
   }
 }
 
+// add bot to conversation
+const addedBot = (bot) => ({type: 'ADDED_BOT_TO_CONVERSATION', bot})
+
+const addingBot = (payload) => {
+  return(dispatch) => {
+    const token = Cookies.get('token')
+    fetch('http://localhost:5000/bot_conversations', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization":`Bearer ${token}`
+      },
+      body: JSON.stringify(payload)
+    }).then(res => res.json())
+      .then(data => console.log(data))
+  }
+}
+
 // create new bot
 const openNewBotModal = () => ({type: 'OPEN_NEW_BOT'})
 
 const closeNewBotModal = () => ({type: 'CLOSE_NEW_BOT'})
 
-// const creatingNewBot = (data) => {
-//   return(dispatch) {
-//     const token = Cookies.get('token')
-//     fetch('http://localhost:5000/bots', {
-//       method: 'POST',
-//       headers: {
-//         "Content-Type": "application/json",
-//         "Accept": "application/json",
-//         "Authorization":`Bearer ${token}`
-//       },
-//       body: JSON.stringify(data)
-//     }).then(res => res.json())
-//       .then(data => console.log(data))
-//   }
-// }
+const createdNewBot = (bot) => ({type: 'CREATED_NEW_BOT', bot})
+
+const creatingNewBot = (payload) => {
+  return(dispatch) => {
+    const token = Cookies.get('token')
+    fetch('http://localhost:5000/bots', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization":`Bearer ${token}`
+      },
+      body: JSON.stringify(payload)
+    }).then(res => res.json())
+      .then(data => dispatch(createdNewBot(data.bot)))
+  }
+}
 
 // edit profile
 const openProfileModal = () => ({type: 'OPEN_PROFILE_MODAL'})
@@ -229,4 +250,4 @@ const closeProfileModal = () => ({type: 'CLOSE_PROFILE_MODAL'})
 //   }
 // }
 
-export { sendingMessage, fetchingConversation, receiveMessage, checkingForUser, loggingIn, logout, createSocket, fetchingAllUsers, creatingNewConversation, openNewConversationModal, closeNewConversationModal, closeNewBotModal, openNewBotModal, openProfileModal, closeProfileModal, fetchingAllBots }
+export { sendingMessage, fetchingConversation, receiveMessage, checkingForUser, loggingIn, logout, createSocket, fetchingAllUsers, creatingNewConversation, openNewConversationModal, closeNewConversationModal, closeNewBotModal, openNewBotModal, openProfileModal, closeProfileModal, fetchingAllBots, creatingNewBot, addingBot }

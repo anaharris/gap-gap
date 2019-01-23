@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu, Dropdown, Modal, Image, Header, Button } from 'semantic-ui-react'
+import { Menu, Dropdown, Modal } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { logout, openNewConversationModal, closeNewConversationModal, openNewBotModal, closeNewBotModal, openProfileModal, closeProfileModal } from '../redux/actions.js'
 import NewConversation from './NewConversation'
@@ -35,7 +35,7 @@ class Navbar extends Component {
           <Dropdown.Menu>
             {this.props.allBots.map(bot => {
               return (
-                <BotInfo bot={bot}/>
+                <BotInfo key={bot.id} bot={bot}/>
               )})}
           </Dropdown.Menu>
         </Dropdown>
