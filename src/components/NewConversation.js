@@ -47,7 +47,7 @@ class NewConversation extends Component {
     return (
         <Modal.Content>
           <Header>Topic:</Header>
-          <Form onSubmit={this.formSubmit}>
+          <Form id="newConversationForm" onSubmit={this.formSubmit}>
             <Form.Input
               onChange={this.inputChange}
               placeholder='Topic'
@@ -66,7 +66,6 @@ class NewConversation extends Component {
               size='small'
               content='Create'
               color='orange'
-              onClick={this.props.closeNewConversationModal}
             />
           </Form>
         </Modal.Content>
