@@ -177,10 +177,42 @@ const creatingNewConversation = (payload) => {
   }
 }
 
+// fetching all bots
+const fetchedAllBots = (bots) => ({type: 'FETCHED_ALL_BOTS', bots})
+
+const fetchingAllBots = () => {
+  return(dispatch) => {
+    const token = Cookies.get('token')
+    fetch('http://localhost:5000/bots', {
+      method: 'GET',
+      headers: {
+        "Content-Type":"application/json",
+        "Authorization":`Bearer ${token}`}
+    }).then(res => res.json())
+      .then(data => dispatch(fetchedAllBots(data)))
+  }
+}
+
 // create new bot
 const openNewBotModal = () => ({type: 'OPEN_NEW_BOT'})
 
 const closeNewBotModal = () => ({type: 'CLOSE_NEW_BOT'})
+
+// const creatingNewBot = (data) => {
+//   return(dispatch) {
+//     const token = Cookies.get('token')
+//     fetch('http://localhost:5000/bots', {
+//       method: 'POST',
+//       headers: {
+//         "Content-Type": "application/json",
+//         "Accept": "application/json",
+//         "Authorization":`Bearer ${token}`
+//       },
+//       body: JSON.stringify(data)
+//     }).then(res => res.json())
+//       .then(data => console.log(data))
+//   }
+// }
 
 // edit profile
 const openProfileModal = () => ({type: 'OPEN_PROFILE_MODAL'})
@@ -197,4 +229,4 @@ const closeProfileModal = () => ({type: 'CLOSE_PROFILE_MODAL'})
 //   }
 // }
 
-export { sendingMessage, fetchingConversation, receiveMessage, checkingForUser, loggingIn, logout, createSocket, fetchingAllUsers, creatingNewConversation, openNewConversationModal, closeNewConversationModal, closeNewBotModal, openNewBotModal, openProfileModal, closeProfileModal }
+export { sendingMessage, fetchingConversation, receiveMessage, checkingForUser, loggingIn, logout, createSocket, fetchingAllUsers, creatingNewConversation, openNewConversationModal, closeNewConversationModal, closeNewBotModal, openNewBotModal, openProfileModal, closeProfileModal, fetchingAllBots }

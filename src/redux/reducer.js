@@ -43,7 +43,7 @@ const selectedConversationReducer = (state = null, action) => {
   }
 }
 
-const allUsersRecuder = (state = [], action) => {
+const allUsersReducer = (state = [], action) => {
   switch (action.type) {
     case 'FETCHED_ALL_USERS':
       return action.allUsers
@@ -86,12 +86,22 @@ const profileModalReducer = (state = false, action) => {
   }
 }
 
+const allBotsReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'FETCHED_ALL_BOTS':
+      return action.bots
+    default:
+      return state
+  }
+}
+
 
 const rootReducer = combineReducers({
   messageInput: messageReducer,
   userData: userReducer,
   selectedConversation: selectedConversationReducer,
-  allUsers: allUsersRecuder,
+  allUsers: allUsersReducer,
+  allBots: allBotsReducer,
   conversationModal: conversationModalReducer,
   newBotModal: botModalReducer,
   profileModal: profileModalReducer

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Header, Form, Modal, Image } from 'semantic-ui-react'
+import { Header, Modal, Image } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { closeProfileModal } from '../redux/actions.js'
 

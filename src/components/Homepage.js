@@ -4,9 +4,14 @@ import ConversationsContainer from './ConversationsContainer'
 import { Redirect } from 'react-router-dom'
 import { Grid } from 'semantic-ui-react'
 import {connect} from 'react-redux'
+import {fetchingAllBots} from '../redux/actions.js'
 
 
 class Homepage extends Component {
+
+  componentDidMount() {
+    this.props.fetchingAllBots()
+  }
 
   render(){
   return (
@@ -28,5 +33,10 @@ const mapStateToProps = state => {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchingAllBots: () => {dispatch(fetchingAllBots())}
+  }
+}
 
-export default connect(mapStateToProps)(Homepage)
+export default connect(mapStateToProps, mapDispatchToProps)(Homepage)

@@ -22,11 +22,15 @@ class BotForm extends Component {
     this.setState({response: e.target.value})
   }
 
+  formSubmit = () => {
+    this.props.closeNewBotModal()
+  }
+
   render() {
     return (
       <Modal.Content>
         <Header>Bot name:</Header>
-        <Form>
+        <Form onSubmit={this.formSubmit}>
           <Form.Input
             placeholder='Bot name'
             onChange={this.handleName}
@@ -48,7 +52,6 @@ class BotForm extends Component {
             size='small'
             content='Create'
             color='orange'
-            onClick={this.props.closeNewBotModal}
           />
         </Form>
       </Modal.Content>
