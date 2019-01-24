@@ -246,6 +246,11 @@ const creatingNewBot = (payload) => {
   }
 }
 
+// loading page
+const loading = () => ({type: 'LOADING'})
+
+const loaded = () => ({type: 'LOADED'})
+
 // edit profile
 const openProfileModal = () => ({type: 'OPEN_PROFILE_MODAL'})
 
@@ -261,4 +266,4 @@ const closeProfileModal = () => ({type: 'CLOSE_PROFILE_MODAL'})
 //   }
 // }
 
-export { sendingMessage, fetchingConversation, receiveMessage, checkingForUser, loggingIn, logout, createSocket, fetchingAllUsers, creatingNewConversation, openNewConversationModal, closeNewConversationModal, closeNewBotModal, openNewBotModal, openProfileModal, closeProfileModal, fetchingAllBots, creatingNewBot, addingBot }
+export { sendingMessage, fetchingConversation, receiveMessage, checkingForUser, loggingIn, logout, createSocket, fetchingAllUsers, creatingNewConversation, openNewConversationModal, closeNewConversationModal, closeNewBotModal, openNewBotModal, openProfileModal, closeProfileModal, fetchingAllBots, creatingNewBot, addingBot, loading, loaded }

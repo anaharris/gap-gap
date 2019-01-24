@@ -4,11 +4,11 @@ import Login from './components/Login'
 import Signup from './components/Signup'
 import Homepage from './components/Homepage'
 import NotFound from './components/NotFound'
-import Navbar from './components/Navbar'
+import Loading from './components/Loading'
 import {Sticky} from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.css'
 import { connect } from 'react-redux'
-import { createSocket, checkingForUser } from './redux/actions.js'
+import { createSocket, checkingForUser, loading } from './redux/actions.js'
 const Cookies = require('cookies-js')
 
 
@@ -16,6 +16,7 @@ class App extends Component {
 
   componentDidMount() {
     if (Cookies.get('token')) {
+      this.props.loading()
       this.props.checkingUser()
     }
   }
@@ -23,11 +24,8 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-      {this.props.currentUser ? (
-        <Sticky>
-          <Navbar />
-        </Sticky>
-      ) : null}
+      {this.props.loading ?
+        (<Loading/>) : null}
         <Switch>
           <Route exact path="/" render={() => <Redirect to='/login'/>} />
           <Route exact path="/login" render={() => <Login />} />
@@ -35,21 +33,23 @@ class App extends Component {
           <Route exact path="/conversations" render={() => <Homepage />} />
           <Route component={NotFound} />
         </Switch>
-      </ Fragment>
-    );
+      </Fragment>
+    )
   }
 }
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.userData
+    currentUser: state.userData,
+    loading: state.loading
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     createSocket: () => {dispatch(createSocket())},
-    checkingUser: (token) => {dispatch(checkingForUser(token))}
+    checkingUser: (token) => {dispatch(checkingForUser(token))},
+    loading: () => {dispatch(loading())}
   }
 }
 

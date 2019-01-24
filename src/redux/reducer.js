@@ -101,6 +101,16 @@ const allBotsReducer = (state = [], action) => {
   }
 }
 
+const loadingReducer = (state = false, action) => {
+  switch (action.type) {
+    case 'LOADING':
+      return true
+    case 'LOADED':
+      return false
+    default:
+      return state
+  }
+}
 
 const rootReducer = combineReducers({
   messageInput: messageReducer,
@@ -110,7 +120,8 @@ const rootReducer = combineReducers({
   allBots: allBotsReducer,
   conversationModal: conversationModalReducer,
   newBotModal: botModalReducer,
-  profileModal: profileModalReducer
+  profileModal: profileModalReducer,
+  loading: loadingReducer
 })
 
 export default rootReducer

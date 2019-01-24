@@ -16,7 +16,7 @@ class Login extends Component {
 
   render() {
     return (
-      Cookies.get('token') && this.props.currentUser ? <Redirect to='/conversations' /> :
+      Cookies.get('token') && this.props.currentUser && !this.props.loading ? <Redirect to='/conversations' /> :
       <div className='padded-top-large'>
         <Grid columns={4} centered style={{paddingTop: '10%'}}>
         <Grid.Row verticalAlign='top'>
@@ -76,7 +76,8 @@ class Login extends Component {
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.userData
+    currentUser: state.userData,
+    loading: state.loading
   }
 }
 
