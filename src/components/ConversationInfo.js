@@ -20,11 +20,11 @@ class ConversationInfo extends Component {
       <Grid.Column width={4}>
         <Segment>
           <List size='large' verticalAlign='middle'>
-            <Header>{this.props.selectedConversation.topic}</Header>
+            <Header style={{color: '#37525F'}}>{this.props.selectedConversation.topic}</Header>
             <Header>Participants:</Header>
             {this.props.selectedConversation.users.map(user => {
               return (
-                <List.Item>
+                <List.Item key={user.id}>
                   <Image avatar src={user.avatar}/>
                   <List.Content>
                     <List.Header>{user.name}</List.Header>
