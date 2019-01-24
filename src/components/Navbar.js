@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Menu, Modal } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { logout, openNewConversationModal, closeNewConversationModal, openNewBotModal, closeNewBotModal, openProfileModal, closeProfileModal } from '../redux/actions.js'
+import { logout, openNewConversationModal, closeNewConversationModal, openNewBotModal, closeNewBotModal, openProfileModal, closeProfileModal, homepage } from '../redux/actions.js'
 import NewConversation from './NewConversation'
 import BotForm from './BotForm'
 import Profile from './Profile'
@@ -13,7 +13,7 @@ class Navbar extends Component {
   render() {
     return (
       <Menu style={{backgroundColor: '#37525F', color: '#CEDEDC'}} inverted>
-        <Menu.Item>
+        <Menu.Item onClick={this.props.homepage}>
           <img src={logo} alt='logo'/>
         </Menu.Item>
         <Modal
@@ -81,7 +81,8 @@ const mapDispatchToProps = dispatch => {
     openNewBotModal: () => {dispatch(openNewBotModal())},
     closeNewBotModal: () => {dispatch(closeNewBotModal())},
     openProfileModal: () => {dispatch(openProfileModal())},
-    closeProfileModal: () => {dispatch(closeProfileModal())}
+    closeProfileModal: () => {dispatch(closeProfileModal())},
+    homepage: () => {dispatch(homepage())}
   }
 }
 

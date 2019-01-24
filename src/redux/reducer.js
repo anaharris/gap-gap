@@ -42,6 +42,8 @@ const selectedConversationReducer = (state = null, action) => {
       let newBots = state.bots.slice()
       newBots.push(action.bot)
       return {...state, bots: newBots}
+    case 'HOMEPAGE':
+      return null
     default:
       return state
   }
@@ -83,7 +85,7 @@ const profileModalReducer = (state = false, action) => {
   switch (action.type) {
     case 'OPEN_PROFILE_MODAL':
       return true
-    case ('CLOSE_PROFILE_MODAL'):
+    case 'CLOSE_PROFILE_MODAL':
       return false
     default:
       return state

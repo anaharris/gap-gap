@@ -96,6 +96,8 @@ const fetchingConversation = (id) => {
   }
 }
 
+const homepage = () => ({type: 'HOMEPAGE'})
+
 // onKeyDown for Conversation Input
 const sendMessage = (message) => ({type: 'SEND_MESSAGE', messageInput: message})
 
@@ -261,4 +263,4 @@ const closeProfileModal = () => ({type: 'CLOSE_PROFILE_MODAL'})
 //   }
 // }
 
-export { sendingMessage, fetchingConversation, receiveMessage, checkingForUser, loggingIn, logout, createSocket, fetchingAllUsers, creatingNewConversation, openNewConversationModal, closeNewConversationModal, closeNewBotModal, openNewBotModal, openProfileModal, closeProfileModal, fetchingAllBots, creatingNewBot, addingBot }
+export { sendingMessage, fetchingConversation, receiveMessage, checkingForUser, loggingIn, logout, createSocket, fetchingAllUsers, creatingNewConversation, openNewConversationModal, closeNewConversationModal, closeNewBotModal, openNewBotModal, openProfileModal, closeProfileModal, fetchingAllBots, creatingNewBot, addingBot, homepage }
