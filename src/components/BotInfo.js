@@ -46,12 +46,12 @@ class BotInfo extends Component {
           </Modal.Content>
           <Modal.Actions>
             <Button
-              color='orange'
+              style={{backgroundColor: '#37525F', color: '#CEDEDC'}}
               onClick={() => this.setState({open: false})}
               size='small'
             > Cancel </Button>
             <Button
-              color='green'
+              style={{backgroundColor: '#37525F', color: '#CEDEDC'}}
               onClick={() => this.onButtonClick()}
               size='small'
             > Add </Button>
