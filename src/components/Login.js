@@ -18,7 +18,7 @@ class Login extends Component {
     return (
       Cookies.get('token') && this.props.currentUser ? <Redirect to='/conversations' /> :
       <div className='padded-top-large'>
-        <Grid columns={3} centered style={{paddingTop: '10%'}}>
+        <Grid columns={4} centered style={{paddingTop: '10%'}}>
         <Grid.Row verticalAlign='top'>
           <Grid.Column>
             <Image size='small' floated='right' src={logo}/>
@@ -26,7 +26,7 @@ class Login extends Component {
               textAlign='center'
               style={{
                 color: '#37525F',
-                fontSize: '60px',
+                fontSize: '75px',
                 fontFamily: "'ZCOOL QingKe HuangYou', cursive"}}
               >
                 GapGap
