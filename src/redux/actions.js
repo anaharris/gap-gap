@@ -204,19 +204,24 @@ const addingBot = (payload) => {
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Authorization":`Bearer ${token}`
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify(payload)
     }).then(res => res.json())
       .then(data => {
-        console.log(data)
-        console.log(store.getState().allBots)
-        let bot = store.getState().allBots.filter(bot => bot.id === data.botConversation.bot_oid)
-        console.log(bot)
-        dispatch(addedBot(bot))
-      })
+        fetch(`http://localhost:5000/bots/${data.botConversation.bot_id}`, {
+          method: 'GET',
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": `Bearer ${token}`
+          }
+        }).then(res => res.json())
+          .then(data => {dispatch(addedBot(data))})
+      }
+    )}
   }
-}
+
 
 // create new bot
 const openNewBotModal = () => ({type: 'OPEN_NEW_BOT'})

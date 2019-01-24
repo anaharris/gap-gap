@@ -37,7 +37,7 @@ class ConversationInfo extends Component {
             <Header>Bots:</Header>
             {this.props.selectedConversation.bots.map(bot => {
               return (
-              <List.Item>
+              <List.Item key={bot.id}>
                 <Image avatar src={bot.avatar}/>
                 <List.Content>
                   <List.Header>{bot.name}</List.Header>
