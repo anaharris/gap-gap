@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import Message from './Message'
 import Input from './Input'
-import { Segment, Grid, List } from 'semantic-ui-react'
+import { Segment, Grid, List, Image } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import welcome from './welcome.gif'
 
 class MessagesContainer extends Component {
   render() {
@@ -11,8 +12,7 @@ class MessagesContainer extends Component {
       <Grid.Column width={12}>
         <Segment
           style={{
-            backgroundColor: '#f9dcd6',
-            height: '550px',
+            height: '850px',
             overflow: 'scroll'
           }} >
           <List>
@@ -24,7 +24,12 @@ class MessagesContainer extends Component {
         <Segment>
           <Input />
         </Segment>
-      </Grid.Column> : <p id='greeting'>hi, {this.props.currentUser.name}</p>
+      </Grid.Column> :
+      <Grid.Column>
+        <Segment>
+          <Image src={welcome} fluid/>
+        </Segment>
+      </Grid.Column>
     )
   }
 }

@@ -6,7 +6,7 @@ class Message extends Component {
 
   render() {
     return (
-      <List.Item>
+      <List.Item style={{marginBottom: '2px'}}>
         <Image avatar src={this.props.message.avatar}/>
         <List.Content>
           <List.Header>{this.props.message.user_name}</List.Header>
@@ -20,4 +20,3 @@ class Message extends Component {
 }
 
 export default Message
- 

@@ -8,11 +8,16 @@ class Conversation extends Component {
     return (
       <Segment
         onClick={() => this.props.onClick(this.props.conversation.id)}
-        style={{backgroundColor: '#f9dcd6'}}
       >
           {this.props.conversation.topic}
       </Segment>
     )
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    selectedConversation: state.selectedConversation
   }
 }
 

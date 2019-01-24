@@ -6,15 +6,16 @@ import NewConversation from './NewConversation'
 import BotForm from './BotForm'
 import Profile from './Profile'
 import BotInfo from './BotInfo'
+import logo from './logo-pink.png'
 
 
 class Navbar extends Component {
 
   render() {
     return (
-      <Menu style={ {backgroundColor: '#cc5500'}} inverted>
+      <Menu style={{backgroundColor: '#37525F', color: '#CEDEDC'}} inverted>
         <Menu.Item>
-          logo
+          <img src={logo}/>
         </Menu.Item>
         <Modal
           size='small'
@@ -29,6 +30,8 @@ class Navbar extends Component {
           <NewConversation />
         </Modal>
         <Dropdown
+          inverted
+          style={{backgroundColor: '#37525F', color: '#CEDEDC'}}
           text='Bots'
           className='link item'
         >
