@@ -65,7 +65,7 @@ class NewConversation extends Component {
               fluid
               size='small'
               content='Create'
-              color='orange'
+              style={{backgroundColor: '#37525F', color: '#CEDEDC'}}
             />
           </Form>
         </Modal.Content>
