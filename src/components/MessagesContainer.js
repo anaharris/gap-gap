@@ -9,7 +9,7 @@ class MessagesContainer extends Component {
   render() {
     return (
       this.props.selectedConversation ?
-      <Grid.Column width={12}>
+      <Grid.Column width={8}>
         <Segment
           style={{
             height: '850px',
@@ -24,9 +24,10 @@ class MessagesContainer extends Component {
         <Segment>
           <Input />
         </Segment>
-      </Grid.Column> :
-      <Grid.Column>
-        <Segment>
+      </Grid.Column>
+      :
+      <Grid.Column width={8}>
+        <Segment style ={{height: '850px'}}>
           <Image src={welcome} fluid/>
         </Segment>
       </Grid.Column>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MessagesContainer from './MessagesContainer'
 import ConversationsContainer from './ConversationsContainer'
+import ConversationInfo from './ConversationInfo'
 import { Redirect } from 'react-router-dom'
 import { Grid } from 'semantic-ui-react'
 import {connect} from 'react-redux'
@@ -20,6 +21,7 @@ class Homepage extends Component {
         <Grid.Row>
           <ConversationsContainer />
           <MessagesContainer />
+          <ConversationInfo />
         </ Grid.Row>
       </Grid>
       ) : <Redirect to='/login' />

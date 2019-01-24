@@ -20,7 +20,7 @@ class Navbar extends Component {
         <Modal
           size='small'
           trigger={<Menu.Item
-                      name='new conversation'
+                      name='Create conversation'
                       onClick={this.props.openNewConversationModal}
                     />}
           open={this.props.conversationModal}
@@ -29,19 +29,6 @@ class Navbar extends Component {
           <Modal.Header> Create a New Conversation </Modal.Header>
           <NewConversation />
         </Modal>
-        <Dropdown
-          inverted
-          style={{backgroundColor: '#37525F', color: '#CEDEDC'}}
-          text='Bots'
-          className='link item'
-        >
-          <Dropdown.Menu>
-            {this.props.allBots.map(bot => {
-              return (
-                <BotInfo key={bot.id} bot={bot}/>
-              )})}
-          </Dropdown.Menu>
-        </Dropdown>
         <Modal
           size='small'
           trigger={<Menu.Item
@@ -82,7 +69,8 @@ const mapStateToProps = state => {
     conversationModal: state.conversationModal,
     newBotModal: state.newBotModal,
     profileModal: state.profileModal,
-    allBots: state.allBots
+    allBots: state.allBots,
+    userData: state.userData
   }
 }
 

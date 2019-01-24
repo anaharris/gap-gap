@@ -47,7 +47,7 @@ class Login extends Component {
                 >Login</Button>
               </Segment>
             </Form>
-            <Message inverted>
+            <Message>
                 New to us? <Link style={{color: '#37525F'}} to='/signup'>Sign up</Link>
             </Message>
           </ Grid.Column>

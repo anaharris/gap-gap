@@ -38,6 +38,10 @@ const selectedConversationReducer = (state = null, action) => {
       let newMessages = state.messages.slice()
       newMessages.push(action.message)
       return {...state, messages: newMessages}
+    case 'ADDED_BOT_TO_CONVERSATION':
+      let newBots = state.bots.slice()
+      newBots.push(action.bot)
+      return {...state, bots: newBots}
     default:
       return state
   }

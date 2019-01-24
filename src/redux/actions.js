@@ -189,7 +189,7 @@ const fetchingAllBots = () => {
         "Content-Type":"application/json",
         "Authorization":`Bearer ${token}`}
     }).then(res => res.json())
-      .then(data => dispatch(fetchedAllBots(data)))
+      .then(data => {dispatch(fetchedAllBots(data))})
   }
 }
 
@@ -208,7 +208,13 @@ const addingBot = (payload) => {
       },
       body: JSON.stringify(payload)
     }).then(res => res.json())
-      .then(data => console.log(data))
+      .then(data => {
+        console.log(data)
+        console.log(store.getState().allBots)
+        let bot = store.getState().allBots.filter(bot => bot.id === data.botConversation.bot_oid)
+        console.log(bot)
+        dispatch(addedBot(bot))
+      })
   }
 }
 
