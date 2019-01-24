@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import Message from './Message'
-import Input from './Input'
 import BotInfo from './BotInfo'
 import { Segment, Grid, List, Image, Header, Dropdown } from 'semantic-ui-react'
 import { connect } from 'react-redux'

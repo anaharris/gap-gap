@@ -15,12 +15,6 @@ class Conversation extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    selectedConversation: state.selectedConversation
-  }
-}
-
 const mapDispatchToProps = dispatch => {
   return {
     onClick: (id) => {dispatch(fetchingConversation(id))}

@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import { Menu, Dropdown, Modal } from 'semantic-ui-react'
+import { Menu, Modal } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { logout, openNewConversationModal, closeNewConversationModal, openNewBotModal, closeNewBotModal, openProfileModal, closeProfileModal } from '../redux/actions.js'
 import NewConversation from './NewConversation'
 import BotForm from './BotForm'
 import Profile from './Profile'
-import BotInfo from './BotInfo'
 import logo from './logo-pink.png'
 
 
@@ -15,7 +14,7 @@ class Navbar extends Component {
     return (
       <Menu style={{backgroundColor: '#37525F', color: '#CEDEDC'}} inverted>
         <Menu.Item>
-          <img src={logo}/>
+          <img src={logo} alt='logo'/>
         </Menu.Item>
         <Modal
           size='small'
