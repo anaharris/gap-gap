@@ -5,14 +5,14 @@ import { connect } from 'react-redux'
 
 class ConversationInfo extends Component {
 
-  // filterBots(){
-  //   debugger
-  //   if (this.props.selectedConversation) {
-  //     return this.props.allBots.filter(bot => !!this.props.selectedConversation.bots.includes(bot))
-  //   } else {
-  //     return this.props.allBots
-  //   }
-  // }
+  filterBots(){
+    if (this.props.selectedConversation) {
+      debugger
+      return this.props.allBots.filter(bot => !!this.props.selectedConversation.bots.includes(bot))
+    } else {
+      return this.props.allBots
+    }
+  }
 
   render() {
     return (
@@ -50,9 +50,8 @@ class ConversationInfo extends Component {
             >
               <Dropdown.Menu>
                 {this.props.allBots.map(bot => {
-                  return (
-                    <BotInfo key={bot.id} bot={bot}/>
-                  )})}
+                    return (<BotInfo key={bot.id} bot={bot}/>)
+                  })}
               </Dropdown.Menu>
             </Dropdown>
           </Segment>
