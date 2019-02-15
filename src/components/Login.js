@@ -31,7 +31,7 @@ class Login extends Component {
               >
                 GapGap
             </Header>
-            <p style={{color: '#37525F', fontSize: '30px', textAlign: 'center', fontFamily: "'Open Sans', sans-serif"}}>Chat App</p>
+            
           </Grid.Column>
           </Grid.Row>
           <Grid.Row verticalAlign='bottom'>

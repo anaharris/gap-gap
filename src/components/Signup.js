@@ -27,7 +27,7 @@ class Signup extends Component {
               >
                 GapGap
             </Header>
-            <p style={{color: '#F7C3B6', fontSize: '30px', textAlign: 'center', fontFamily: "'Open Sans', sans-serif"}}>Chat App</p>
+          
           </Grid.Column>
         </Grid.Row>
         <Grid.Row verticalAlign='bottom'>
