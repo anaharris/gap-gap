@@ -17,6 +17,23 @@ code {
   font-weight: 600;
 }
 
-.padded-top-large {
+#greeting {
+  color: white;
+  font-size: 38px;
+  font-weight: bold;
+  position: relative;
+  margin: 3% auto;
+}
+
+#loading-background {
+  background-color: rgb(55, 82, 95);
+  height: 100vh;
+}
+
+#loading-logo {
+  display: block;
+  height: 60%;
+  margin-left: auto;
+  margin-right: auto;
   padding-top: 10%;
 }

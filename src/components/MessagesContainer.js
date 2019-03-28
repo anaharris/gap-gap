@@ -1,26 +1,45 @@
 import React, { Component } from 'react'
 import Message from './Message'
 import Input from './Input'
-import { Segment, Grid } from 'semantic-ui-react'
+import { Segment, Grid, List, Image } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import welcome from './welcome.gif'
 
 class MessagesContainer extends Component {
   render() {
     return (
-      <Grid.Column width={12}>
-      <Segment >
-        {this.props.selectedChat ?
-          this.props.selectedChat.messages.map(m => (
+      this.props.selectedConversation ?
+      <Grid.Column width={8}>
+        <Segment
+          style={{
+            height: '140%',
+            overflowY: 'scroll'
+          }} >
+          <List>
+            {this.props.selectedConversation.messages.map(m => (
               <Message key={m.id} message={m}/>
-            )) : <p>Select a conversation</p>}
+            ))}
+          </List>
         </ Segment>
-        {this.props.selectedChat ? (
-          <Segment>
-            <Input chatInput={this.props.chatInput}/>
-          </Segment>
-        ): null}
+        <Segment>
+          <Input />
+        </Segment>
+      </Grid.Column>
+      :
+      <Grid.Column width={8}>
+        <Segment style ={{height: '120%'}}>
+          <Image src={welcome} fluid/>
+        </Segment>
       </Grid.Column>
     )
   }
 }
 
-export default MessagesContainer
+const mapStateToProps = state => {
+  return {
+    selectedConversation: state.selectedConversation,
+    currentUser: state.userData
+  }
+}
+
+export default connect(mapStateToProps)(MessagesContainer)

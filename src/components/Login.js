@@ -1,67 +1,90 @@
 import React, { Component } from 'react'
 import { Redirect, Link } from 'react-router-dom'
-import { Grid, Form, Button, Segment, Message } from 'semantic-ui-react'
+import { Grid, Form, Button, Segment, Message, Image, Header } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { loggingIn } from '../redux/actions.js'
+import logo from './logo-blue.png'
 const Cookies = require('cookies-js')
+
 
 class Login extends Component {
 
-  userLogin = (username, password) => {
-    const url = 'http://localhost:5000/login'
-    let data = { user: {username: username, password: password} }
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    }).then(res => res.json())
-      .then(data => {
-        if (data.error) {
-          alert(data.message)
-        } else {
-          Cookies.set('token', data.jwt)
-          this.props.setUser(data.user)
-        }
-      })
-  }
+  componentDidMount() {
+    document.body.style.background = '#F7C3B6'
 
-  handleLoginSubmit = (event) => {
-    const username = event.target.username.value
-    const password = event.target.password.value
-    this.userLogin(username, password)
   }
 
   render() {
-    return Cookies.get('token') ? <Redirect to='/home' /> : (
-      <div className='padded-top-large sand-background'>
-        <Grid textAlign='center' verticalAlign='middle'>
-          <Grid.Column style={{ maxWidth: 450 }}>
-            <Form size='large' onSubmit={this.handleLoginSubmit}>
-              <Segment stacked>
-                <Form.Input name='username' fluid icon='user' iconPosition='left' placeholder='Username' />
-                <Form.Input
-                 name='password'
-                 fluid
-                 icon='lock'
-                 iconPosition='left'
-                 placeholder='Password'
-                 type='password'
-                 />
-                <Button color='green' fluid size='large' type='submit'>
-                  Login
-                </Button>
-              </Segment>
-            </Form>
-            <Message>
-                New to us? <Link to='/signup'>Sign up</Link>
-            </Message>
-          </ Grid.Column>
+    return (
+      Cookies.get('token') && this.props.currentUser ? <Redirect to='/conversations' /> :
+      <div className='padded-top-large'>
+        <Grid columns={4} centered style={{paddingTop: '10%'}}>
+        <Grid.Row verticalAlign='top'>
+          <Grid.Column>
+            <Image size='small' floated='right' src={logo}/>
+            <Header
+              textAlign='center'
+              style={{
+                color: '#37525F',
+                fontSize: '75px',
+                fontFamily: "'ZCOOL QingKe HuangYou', cursive"}}
+              >
+                GapGap
+            </Header>
+
+          </Grid.Column>
+          </Grid.Row>
+          <Grid.Row verticalAlign='bottom'>
+          <Grid.Column >
+              <Form
+                size='large'
+                onSubmit={(e) => {this.props.onSubmit(e.target.username.value, e.target.password.value)}}>
+                <Segment stacked>
+                  <Form.Input
+                    name='username'
+                    fluid icon='user'
+                    iconPosition='left'
+                    placeholder='Username'
+                   />
+                  <Form.Input
+                   name='password'
+                   fluid
+                   icon='lock'
+                   iconPosition='left'
+                   placeholder='Password'
+                   type='password'
+                   style={{background: '#fcefec'}}
+                   />
+                  <Button
+                    style={{backgroundColor: '#37525F', color: '#CEDEDC'}}
+                    fluid
+                    size='large'
+                    type='submit'
+                  >Login</Button>
+                </Segment>
+              </Form>
+              <Message style={{textAlign: 'center'}}>
+                  New to us? <Link style={{color: '#37525F'}} to='/signup'>Sign up</Link>
+              </Message>
+            </Grid.Column>
+          </Grid.Row>
         </Grid>
       </div>
     )
   }
+}
 
+const mapStateToProps = state => {
+  return {
+    currentUser: state.userData
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onSubmit: (username, password) => {dispatch(loggingIn(username, password))}
+  }
 }
 
 
-export default Login
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
