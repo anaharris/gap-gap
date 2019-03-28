@@ -12,8 +12,8 @@ class MessagesContainer extends Component {
       <Grid.Column width={8}>
         <Segment
           style={{
-            height: '850px',
-            overflow: 'scroll'
+            height: '140%',
+            overflowY: 'scroll'
           }} >
           <List>
             {this.props.selectedConversation.messages.map(m => (
@@ -27,7 +27,7 @@ class MessagesContainer extends Component {
       </Grid.Column>
       :
       <Grid.Column width={8}>
-        <Segment style ={{height: '850px'}}>
+        <Segment style ={{height: '120%'}}>
           <Image src={welcome} fluid/>
         </Segment>
       </Grid.Column>

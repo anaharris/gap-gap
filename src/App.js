@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import {Route, Switch, Redirect, withRouter} from 'react-router-dom'
+import withLoader from './components/withLoader'
 import Login from './components/Login'
 import Signup from './components/Signup'
 import Homepage from './components/Homepage'
@@ -53,4 +54,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withLoader(withRouter(connect(mapStateToProps, mapDispatchToProps)(App)));

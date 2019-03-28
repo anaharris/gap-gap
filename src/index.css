@@ -24,3 +24,16 @@ code {
   position: relative;
   margin: 3% auto;
 }
+
+#loading-background {
+  background-color: rgb(55, 82, 95);
+  height: 100vh;
+}
+
+#loading-logo {
+  display: block;
+  height: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10%;
+}
