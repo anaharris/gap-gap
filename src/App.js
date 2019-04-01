@@ -30,10 +30,10 @@ class App extends Component {
         </Sticky>
       ) : null}
         <Switch>
-          <Route exact path="http://anaharris.github.io/gap-gap/" render={() => <Redirect to='/login'/>} />
-          <Route exact path="http://anaharris.github.io/gap-gap/login" render={() => <Login />} />
-          <Route exact path='http://anaharris.github.io/gap-gap/signup' component={Signup} />
-          <Route exact path="http://anaharris.github.io/gap-gap/conversations" render={() => <Homepage />} />
+          <Route exact path={process.env.PUBLIC_URL + "/"} render={() => <Redirect to='/login'/>} />
+          <Route exact path={process.env.PUBLIC_URL + "/login"} render={() => <Login />} />
+          <Route exact path={process.env.PUBLIC_URL + "/signup"} component={Signup} />
+          <Route exact path={process.env.PUBLIC_URL + "/conversations"} render={() => <Homepage />} />
           <Route component={NotFound} />
         </Switch>
       </ Fragment>
