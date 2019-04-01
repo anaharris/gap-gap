@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect, Link } from 'react-router-dom'
 import { Grid, Form, Button, Segment, Message, Image, Header } from 'semantic-ui-react'
-import logo from './logo-pink.png'
+import logo from './signup-logo.png'
 const Cookies = require('cookies-js')
 
 class Signup extends Component {
@@ -14,20 +14,11 @@ class Signup extends Component {
   render() {
     return (
       Cookies.get('token') && this.props.currentUser ? <Redirect to='/conversations' /> :
-      <Grid columns={4} centered style={{paddingTop: '10%'}}>
+      <Grid columns={4} centered style={{paddingTop: '5%'}}>
         <Grid.Row verticalAlign='top'>
           <Grid.Column>
-            <Image size='small' floated='right' src={logo}/>
-            <Header
-              textAlign='center'
-              style={{
-                color: '#F7C3B6',
-                fontSize: '75px',
-                fontFamily: "'ZCOOL QingKe HuangYou', cursive"}}
-              >
-                GapGap
-            </Header>
-          
+            <Image size='huge' floated='right' src={logo}/>
+
           </Grid.Column>
         </Grid.Row>
         <Grid.Row verticalAlign='bottom'>

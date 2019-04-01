@@ -1,13 +1,13 @@
 import ActionCable from 'actioncable'
 import store from './store.js'
 const Cookies = require('cookies-js')
-
+const API_URL = 'https://gap-gap.herokuapp.com'
 // login
 const loggedIn = (userData) => ({type: 'LOGGED_IN', userData})
 
 const loggingIn = (username, password) => {
   return (dispatch) => {
-    const url = 'http://localhost:5000/login'
+    const url = `${API_URL}/login`
   let data = { user: {username: username, password: password} }
   fetch(url, {
     method: 'POST',
@@ -37,7 +37,7 @@ const checkedUser = (userData) => ({type: 'CHECKED_USER', userData})
 const checkingForUser = (token) => {
   return (dispatch) => {
     const token = Cookies.get('token')
-    const url = 'http://localhost:5000/profile'
+    const url =  `${API_URL}/profile`
     fetch(url, {
       method: 'GET',
       headers: {
@@ -59,7 +59,7 @@ const receiveMessage = (message) => ({type: 'RECEIVE_MESSAGE', message})
 const createSocket = () => {
   return (dispatch) => {
     const token = Cookies.get('token')
-    const url = 'ws://localhost:5000/cable'
+    const url = `ws:${API_URL}/cable`
     let App = {}
     App.cable = ActionCable.createConsumer(`${url}?token=${token}`)
 
@@ -88,7 +88,7 @@ const fetchedConversation = (selectedConversation) => ({type: 'FETCHED_CONVERSAT
 
 const fetchingConversation = (id) => {
   return (dispatch) => {
-    fetch(`http://localhost:5000/conversations/${id}`)
+    fetch(`${API_URL}/conversations/${id}`)
       .then(res => res.json())
       .then(data => {
         dispatch(fetchedConversation(data))
@@ -114,7 +114,7 @@ const fetchedAllUsers = (allUsers) => ({type: 'FETCHED_ALL_USERS', allUsers})
 const fetchingAllUsers = () => {
   return (dispatch) => {
     const token = Cookies.get('token')
-    const url = 'http://localhost:5000/users'
+    const url = `${API_URL}/users`
     fetch(url, {
       method: 'GET',
       headers: {
@@ -140,7 +140,7 @@ const createdNewConversation = (conversation) => ({type: 'NEW_CONVERSATION', con
 const creatingNewConversation = (payload) => {
   return (dispatch) => {
     const token = Cookies.get('token')
-    fetch("http://localhost:5000/conversations", {
+    fetch(`${API_URL}/conversations`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -151,7 +151,7 @@ const creatingNewConversation = (payload) => {
     })
       .then(res => res.json())
       .then(conversationData => {
-        fetch("http://localhost:5000/user_conversations", {
+        fetch(`${API_URL}/user_conversations`, {
           method: 'POST',
           headers: {
             "Content-Type": "application/json",
@@ -161,7 +161,7 @@ const creatingNewConversation = (payload) => {
           body: JSON.stringify({conversation_id: conversationData.conversation.id, user_id: parseInt(payload.userId)})
         }).then(res => res.json())
           .then(resData => {
-            fetch("http://localhost:5000/user_conversations", {
+            fetch(`${API_URL}/user_conversations`, {
               method: 'POST',
               headers: {
                 "Content-Type": "application/json",
@@ -185,7 +185,7 @@ const fetchedAllBots = (bots) => ({type: 'FETCHED_ALL_BOTS', bots})
 const fetchingAllBots = () => {
   return(dispatch) => {
     const token = Cookies.get('token')
-    fetch('http://localhost:5000/bots', {
+    fetch(`${API_URL}/bots`, {
       method: 'GET',
       headers: {
         "Content-Type":"application/json",
@@ -201,7 +201,7 @@ const addedBot = (bot) => ({type: 'ADDED_BOT_TO_CONVERSATION', bot})
 const addingBot = (payload) => {
   return(dispatch) => {
     const token = Cookies.get('token')
-    fetch('http://localhost:5000/bot_conversations', {
+    fetch(`${API_URL}/bot_conversations`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -211,7 +211,7 @@ const addingBot = (payload) => {
       body: JSON.stringify(payload)
     }).then(res => res.json())
       .then(data => {
-        fetch(`http://localhost:5000/bots/${data.botConversation.bot_id}`, {
+        fetch(`${API_URL}/bots/${data.botConversation.bot_id}`, {
           method: 'GET',
           headers: {
             "Content-Type": "application/json",
@@ -235,7 +235,7 @@ const createdNewBot = (bot) => ({type: 'CREATED_NEW_BOT', bot})
 const creatingNewBot = (payload) => {
   return(dispatch) => {
     const token = Cookies.get('token')
-    fetch('http://localhost:5000/bots', {
+    fetch(`${API_URL}/bots`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",

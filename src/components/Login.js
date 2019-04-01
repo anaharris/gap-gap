@@ -3,7 +3,7 @@ import { Redirect, Link } from 'react-router-dom'
 import { Grid, Form, Button, Segment, Message, Image, Header } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { loggingIn } from '../redux/actions.js'
-import logo from './logo-blue.png'
+import logo from './login-logo.png'
 const Cookies = require('cookies-js')
 
 
@@ -18,26 +18,16 @@ class Login extends Component {
     return (
       Cookies.get('token') && this.props.currentUser ? <Redirect to='/conversations' /> :
       <div className='padded-top-large'>
-        <Grid columns={4} centered style={{paddingTop: '10%'}}>
+        <Grid columns={4} centered style={{paddingTop: '5%'}}>
         <Grid.Row verticalAlign='top'>
           <Grid.Column>
-            <Image size='small' floated='right' src={logo}/>
-            <Header
-              textAlign='center'
-              style={{
-                color: '#37525F',
-                fontSize: '75px',
-                fontFamily: "'ZCOOL QingKe HuangYou', cursive"}}
-              >
-                GapGap
-            </Header>
-
+            <Image size='huge' floated='right' src={logo}/>
           </Grid.Column>
           </Grid.Row>
           <Grid.Row verticalAlign='bottom'>
           <Grid.Column >
               <Form
-                size='large'
+                size='big'
                 onSubmit={(e) => {this.props.onSubmit(e.target.username.value, e.target.password.value)}}>
                 <Segment stacked>
                   <Form.Input
