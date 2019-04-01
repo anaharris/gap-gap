@@ -30,10 +30,10 @@ class App extends Component {
         </Sticky>
       ) : null}
         <Switch>
-          <Route exact path="/" render={() => <Redirect to='/login'/>} />
-          <Route exact path="/login" render={() => <Login />} />
-          <Route exact path='/signup' component={Signup} />
-          <Route exact path="/conversations" render={() => <Homepage />} />
+          <Route exact path="http://anaharris.github.io/gap-gap/" render={() => <Redirect to='/login'/>} />
+          <Route exact path="http://anaharris.github.io/gap-gap/login" render={() => <Login />} />
+          <Route exact path='http://anaharris.github.io/gap-gap/signup' component={Signup} />
+          <Route exact path="http://anaharris.github.io/gap-gap/conversations" render={() => <Homepage />} />
           <Route component={NotFound} />
         </Switch>
       </ Fragment>
