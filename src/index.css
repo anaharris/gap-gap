@@ -26,7 +26,7 @@ code {
 }
 
 #loading-background {
-  background-color: rgb(55, 82, 95);
+  background-color: #37525f;
   height: 100vh;
 }
 
@@ -36,4 +36,13 @@ code {
   margin-left: auto;
   margin-right: auto;
   padding-top: 10%;
+}
+
+#not-found {
+  height: 100vh;
+  background-color: #F7C3B6;
+}
+
+#not-found-text {
+  color: #37525f;
 }

@@ -11,7 +11,6 @@ class Login extends Component {
 
   componentDidMount() {
     document.body.style.background = '#F7C3B6'
-
   }
 
   render() {
