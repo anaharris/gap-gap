@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import {Route, Switch, Redirect, withRouter} from 'react-router-dom'
+import {BrowserRouter, Route, Switch, Redirect, withRouter} from 'react-router-dom'
 import withLoader from './components/withLoader'
 import Login from './components/Login'
 import Signup from './components/Signup'
@@ -29,13 +29,15 @@ class App extends Component {
           <Navbar />
         </Sticky>
       ) : null}
-        <Switch>
-          <Route exact path={process.env.PUBLIC_URL + "/"} render={() => <Redirect to='/login'/>} />
-          <Route exact path={process.env.PUBLIC_URL + "/login"} render={() => <Login />} />
-          <Route exact path={process.env.PUBLIC_URL + "/signup"} component={Signup} />
-          <Route exact path={process.env.PUBLIC_URL + "/conversations"} render={() => <Homepage />} />
-          <Route component={NotFound} />
-        </Switch>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
+          <Switch>
+            <Route exact path="/" render={() => <Redirect to='/login'/>} />
+            <Route exact path="/login" render={() => <Login />} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/conversations" render={() => <Homepage />} />
+            <Route component={NotFound} />
+          </Switch>
+        </BrowserRouter>
       </ Fragment>
     );
   }
