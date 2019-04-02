@@ -59,7 +59,7 @@ const receiveMessage = (message) => ({type: 'RECEIVE_MESSAGE', message})
 const createSocket = () => {
   return (dispatch) => {
     const token = Cookies.get('token')
-    const url = `ws://gap-gap.herokuapp.com/cable`
+    const url = `wss://gap-gap.herokuapp.com/cable`
     let App = {}
     App.cable = ActionCable.createConsumer(`${url}?token=${token}`)
 
