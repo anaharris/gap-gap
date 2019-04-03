@@ -7,8 +7,7 @@ class ConversationInfo extends Component {
 
   filterBots(){
     if (this.props.selectedConversation) {
-      debugger
-      return this.props.allBots.filter(bot => !!this.props.selectedConversation.bots.includes(bot))
+      return (this.props.allBots.filter(bot => !this.props.selectedConversation.bots.map(b => b.id).includes(bot.id)))
     } else {
       return this.props.allBots
     }
@@ -49,7 +48,7 @@ class ConversationInfo extends Component {
               className='link item'
             >
               <Dropdown.Menu>
-                {this.props.allBots.map(bot => {
+                {this.filterBots().map(bot => {
                     return (<BotInfo key={bot.id} bot={bot}/>)
                   })}
               </Dropdown.Menu>
