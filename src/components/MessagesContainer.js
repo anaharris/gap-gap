@@ -12,7 +12,7 @@ class MessagesContainer extends Component {
       <Grid.Column width={8}>
         <Segment
           style={{
-            height: '140%',
+            height: '75vh',
             overflowY: 'scroll'
           }} >
           <List>

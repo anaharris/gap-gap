@@ -12,7 +12,7 @@ class ConversationContainer extends Component {
 
   render() {
     return (
-      <Grid.Column width={4} >
+      <Grid.Column width={4}>
       {this.props.conversations ?
         this.props.conversations.map(c => (
             <Conversation
