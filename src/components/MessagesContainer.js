@@ -6,6 +6,9 @@ import { connect } from 'react-redux'
 import welcome from './welcome.gif'
 
 class MessagesContainer extends Component {
+
+
+
   render() {
     return (
       this.props.selectedConversation ?
@@ -18,7 +21,7 @@ class MessagesContainer extends Component {
             direction: 'rtl'
           }} >
           <List>
-            {this.props.selectedConversation.messages.map(m => (
+            {this.props.selectedConversation.messages.reverse().map(m => (
               <Message key={m.id} message={m}/>
             ))}
           </List>
