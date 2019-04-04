@@ -6,7 +6,12 @@ class Message extends Component {
 
   render() {
     return (
-      <List.Item style={{marginBottom: '2px'}}>
+      <List.Item
+        style={{
+          marginBottom: '2px',
+          transform: 'rotate(180deg)',
+          direction: 'ltr'
+        }}>
         <Image avatar src={this.props.message.avatar}/>
         <List.Content>
           <List.Header>{this.props.message.user_name}</List.Header>

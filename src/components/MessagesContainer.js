@@ -13,7 +13,9 @@ class MessagesContainer extends Component {
         <Segment
           style={{
             height: '75vh',
-            overflowY: 'scroll'
+            overflowY: 'scroll',
+            transform: 'rotate(180deg)',
+            direction: 'rtl'
           }} >
           <List>
             {this.props.selectedConversation.messages.map(m => (
