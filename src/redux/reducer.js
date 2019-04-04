@@ -5,7 +5,6 @@ const Cookies = require('cookies-js')
 const messageReducer = (state = '', action) => {
   switch (action.type) {
     case 'SEND_MESSAGE':
-    console.log('sent', action.messageInput);
       return action.messageInput
     default:
       return state
@@ -22,7 +21,6 @@ const userReducer = (state = null, action) => {
     case 'CHECKED_USER':
       return action.userData
     case 'NEW_CONVERSATION':
-      console.log(action)
       let newConversations = state.conversations.slice()
       newConversations.push(action.conversation)
       return {...state, conversations: newConversations}
@@ -36,9 +34,8 @@ const selectedConversationReducer = (state = null, action) => {
     case 'FETCHED_CONVERSATION':
       return action.selectedConversation
     case 'RECEIVE_MESSAGE':
-    console.log('received', action.message);
       let newMessages = state.messages.slice()
-      newMessages.push(action.message)
+      newMessages.unshift(action.message)
       return {...state, messages: newMessages}
     case 'ADDED_BOT_TO_CONVERSATION':
       let newBots = state.bots.slice()
