@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect, Link } from 'react-router-dom'
-import { Grid, Form, Button, Segment, Message, Image, Header } from 'semantic-ui-react'
+import { Grid, Form, Button, Segment, Message, Image } from 'semantic-ui-react'
 import logo from './signup-logo.png'
 const Cookies = require('cookies-js')
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import BotInfo from './BotInfo'
-import { Segment, Grid, List, Image, Header, Dropdown } from 'semantic-ui-react'
+import { Segment, Grid, List, Image, Header, Dropdown, Popup } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 class ConversationInfo extends Component {
@@ -34,12 +34,24 @@ class ConversationInfo extends Component {
             <Header>Bots:</Header>
             {this.props.selectedConversation.bots.map(bot => {
               return (
-              <List.Item key={bot.id}>
-                <Image avatar src={bot.avatar}/>
-                <List.Content>
-                  <List.Header>{bot.name}</List.Header>
-                </List.Content>
-              </List.Item>
+
+              <Popup
+                key={bot.id}
+                trigger={
+                  <List.Item key={bot.id}>
+                    <Image avatar src={bot.avatar}/>
+                    <List.Content>
+                      <List.Header>{bot.name}</List.Header>
+                    </List.Content>
+                  </List.Item>
+                }
+                position='top left'
+              >
+              <h3>{bot.name}</h3>
+              <p><strong>Trigger:</strong> /{bot.trigger}</p>
+              <p><strong>Response:</strong> {bot.response}</p>
+              </Popup>
+
             )})}
             </List>
             <Segment inverted style={{backgroundColor: '#37525F'}}>
