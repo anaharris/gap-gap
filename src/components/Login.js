@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect, Link } from 'react-router-dom'
-import { Grid, Form, Button, Segment, Message, Image } from 'semantic-ui-react'
+import { Grid, Form, Button, Segment, Message, Image, Divider } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { loggingIn } from '../redux/actions.js'
 import logo from './login-logo.png'
@@ -52,6 +52,13 @@ class Login extends Component {
                   >Login</Button>
                 </Segment>
               </Form>
+              <Divider horizontal>Or</Divider>
+              <Button
+                style={{backgroundColor: '#37525F', color: '#CEDEDC', marginTop: '2%'}}
+                fluid
+                size='large'
+                onClick={this.props.loginAsGuest}
+              >Login as guest</Button>
               <Message style={{textAlign: 'center'}}>
                   New to us? <Link style={{color: '#37525F'}} to='/signup'>Sign up</Link>
               </Message>
@@ -71,7 +78,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSubmit: (username, password) => {dispatch(loggingIn(username, password))}
+    onSubmit: (username, password) => {dispatch(loggingIn(username, password))},
+    loginAsGuest: () => {dispatch(loggingIn('guest', '123'))}
   }
 }
 
