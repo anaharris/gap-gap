@@ -21,7 +21,7 @@ class MessagesContainer extends Component {
             direction: 'rtl'
           }} >
           <List>
-            {this.props.selectedConversation.messages.reverse().map(m => (
+            {this.props.selectedConversation.messages.map(m => (
               <Message key={m.id} message={m}/>
             ))}
           </List>

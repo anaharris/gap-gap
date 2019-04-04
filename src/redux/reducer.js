@@ -35,7 +35,7 @@ const selectedConversationReducer = (state = null, action) => {
       return action.selectedConversation
     case 'RECEIVE_MESSAGE':
       let newMessages = state.messages.slice()
-      newMessages.push(action.message)
+      newMessages.unshift(action.message)
       return {...state, messages: newMessages}
     case 'ADDED_BOT_TO_CONVERSATION':
       let newBots = state.bots.slice()
